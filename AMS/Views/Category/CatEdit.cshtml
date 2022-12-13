@@ -1,0 +1,86 @@
+﻿@model AMS.Models.Category
+
+@{
+   
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<div id="content" class="main-content">
+    <!--  Navbar Starts / Breadcrumb Area  -->
+    <div class="sub-header-container">
+        <header class="header navbar navbar-expand-sm">
+            <a href="javascript:void(0);" class="sidebarCollapse" data-placement="bottom">
+                <i class="las la-bars"></i>
+            </a>
+            <ul class="navbar-nav flex-row">
+                <li>
+                    <div class="page-header">
+                        <nav class="breadcrumb-one" aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Setup</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><span>Category Edit</span></li>
+                            </ol>
+                        </nav>
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav d-flex align-center ml-auto right-side-filter">
+                <li class="nav-item more-dropdown">
+                    <div class="input-group input-group-sm">
+                        <input id="rangeCalendarFlatpickr" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Select Date">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-primary border-primary" id="basic-addon2">
+                                <i class="lar la-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item more-dropdown">
+                    <a href="javascript: void(0);" data-original-title="Reload Data" data-placement="bottom" class="btn btn-primary dash-btn btn-sm ml-2 bs-tooltip">
+                        <i class="las la-sync"></i>
+                    </a>
+                </li>
+                <li class="nav-item custom-dropdown-icon">
+                    <a href="javascript: void(0);" data-original-title="Filter" data-placement="bottom" id="customDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-primary dash-btn btn-sm ml-2 bs-tooltip">
+                        <i class="las la-filter"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="customDropdown">
+                        <a class="dropdown-item" data-value="Filter 1" href="javascript:void(0);">Filter 1</a>
+                        <a class="dropdown-item" data-value="Filter 2" href="javascript:void(0);">Filter 2</a>
+                        <a class="dropdown-item" data-value="Filter 3" href="javascript:void(0);">Filter 3</a>
+                    </div>
+                </li>
+            </ul>
+        </header>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Edit this Category</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.CID)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CatName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CatName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CatName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+    
+
+</div>
