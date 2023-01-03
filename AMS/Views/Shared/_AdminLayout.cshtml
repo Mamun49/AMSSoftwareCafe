@@ -29,7 +29,10 @@
     <link href="~/Content/assets/common-assets/plugins/flatpickr/flatpickr.css" rel="stylesheet" type="text/css">
     <link href="~/Content/assets/common-assets/plugins/flatpickr/custom-flatpickr.css" rel="stylesheet" type="text/css">
     <link href="~/Content/assets/css/elements/tooltip.css" rel="stylesheet" type="text/css" />
+    @*<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>*@
     <script src="~/Content/assets/js/libs/jquery-3.1.1.min.js"></script>
+    @*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">*@
+    
     <!-- Page Level Plugin/Style Ends -->
 </head>
 <body>
@@ -692,7 +695,30 @@
 
                         </ul>
                     </li>
-                    
+                    <li class="menu">
+                        <a href="#inventpage" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <i class="las la-warehouse"></i>
+                                <span>Purchase</span>
+                            </div>
+                            <div>
+                                <i class="las la-angle-right sidemenu-right-icon"></i>
+                            </div>
+                        </a>
+                        <ul class="collapse submenu list-unstyled" id="inventpage" data-parent="#accordionExample">
+                            <li>
+                                <a href="~/Transfer/Index"> Purchase List </a>
+                            </li>
+                            <li>
+                                <a href="~/Transfer/Index"> Purchase Entry </a>
+                            </li>
+                            <li>
+                                <a href="~/Home/Maintainence">Recive Item</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
                     <li class="menu">
                         <a href="#setuppage" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
@@ -704,6 +730,21 @@
                             </div>
                         </a>
                         <ul class="collapse submenu list-unstyled" id="setuppage" data-parent="#accordionExample">
+                            <li>
+                                <a href="#pages-companies" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Store <i class="las la-angle-right sidemenu-right-icon"></i> </a>
+                                <ul class="collapse list-unstyled sub-submenu" id="pages-companies" data-parent="#pages">
+                                    <li>
+                                        <a href="~/Store/Index"> Store List </a>
+                                    </li>
+                                    <li>
+                                        <a href="~/Store/AddStore"> Store Entry </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                            <li>
+                                <a href="~/PS/Index"> Suppliers Setup </a>
+                            </li>
                             <li>
                                 <a href="~/Category/Index"> Category Setup </a>
                             </li>
@@ -727,29 +768,27 @@
                 </ul>
             </nav>
         </div>
-        <!--  Sidebar Ends  -->
-        <!--  Content Area Starts  -->
-        @RenderBody()
         <div id="content" class="main-content">
+            <!--  Sidebar Ends  -->
+            <!--  Content Area Starts  -->
+            @RenderBody()
+
             <div class="responsive-msg-component">
                 <p>
                     <a class="close-msg-component"><i class="las la-times"></i></a>
                     Please reload the page to view the responsive functionalities
                 </p>
             </div>
-
-            <div class="footer-wrapper">
+            <!-- Copyright Footer Starts -->
+            <footer class="footer-wrapper">
                 <div class="footer-section f-section-1">
-                    <p class="">Copyright © 2022 <a target="_blank" href="~/Home/Maintainence">Software Café</a>, All rights reserved.</p>
+                    <p class="">Copyright © @DateTime.Now.Year <a target="_blank" href="#">Software Café</a>, All rights reserved.</p>
                 </div>
                 <div class="footer-section f-section-2">
                     <p class="">Crafted with extra <i class="las la-heart text-danger"></i></p>
                 </div>
-            </div>
+            </footer>
 
-            <div class="scroll-top-arrow" style="display: none;">
-                <i class="las la-angle-up"></i>
-            </div>
         </div>
         <!--  Content Area Ends  -->
         <!--  Rightbar Area Starts -->

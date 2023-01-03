@@ -12,6 +12,9 @@ $(function () {
         altInput: true,
         altFormat: "F j, Y",
         dateFormat: "Y-m-d",
+
+        "setDate": new Date(),
+        "autoclose": true
     });
     // Min Date
     $("#minDate").flatpickr({

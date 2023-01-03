@@ -1,11 +1,13 @@
-﻿@model IEnumerable<AMS.Models.user>
+﻿@model IEnumerable<AMS.Models.Store_tbl>
 
 @{
-    
+
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<!DOCTYPE html>
 
+    <!--  Navbar Starts / Breadcrumb Area  -->
     <div class="sub-header-container">
         <header class="header navbar navbar-expand-sm">
             <a href="javascript:void(0);" class="sidebarCollapse" data-placement="bottom">
@@ -16,8 +18,9 @@
                     <div class="page-header">
                         <nav class="breadcrumb-one" aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">User</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><span>User Details</span></li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Setup</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><span>Store</span></li>
+                                <li class="breadcrumb-item active" aria-current="page"><span>Store List</span></li>
                             </ol>
                         </nav>
                     </div>
@@ -53,49 +56,78 @@
             </ul>
         </header>
     </div>
-
     <div class="layout-px-spacing">
         <div class="layout-top-spacing mb-2">
             <div class="col-md-12">
                 <div class="row">
                     <div class="container p-0">
-                        <div class="row layout-top-spacing date-table-container">
-                            <!-- BASIC -->
+                        <div class="row layout-top-spacing">
+                            <div> <a href="~/Store/AddStore" class="btn btn-primary btn-rounded"> Add Store </a></div>
+
                             <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                                 <div class="widget-content widget-content-area br-6">
-                                    <div> <a href="~/User/AddUser" class="btn btn-primary btn-rounded"> Add User </a></div>
-                                    <br/>
+
+
                                     <div class="table-responsive mb-4">
                                         <table id="basic-dt" class="table table-hover" style="width:100%">
                                             <thead>
                                                 <tr>
-                                                    <th> @Html.DisplayNameFor(model => model.Name)</th>
-                                                    <th> @Html.DisplayNameFor(model => model.Email)</th>
-                                                    <th> @Html.DisplayNameFor(model => model.Phone)</th>
+                                                    <th> Store Name</th>
+                                                    <th> Store Code</th>
+                                                    <th> Agent Id</th>
+                                                    <th> Remarks</th>
+                                                    
 
                                                     <th class="no-content"></th>
-                                                    <th class="no-content"></th>
+                                                    <th>
+                                                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" title="Customer Id" class="form-control float-right" maxlength="4" size="3">
+                                                    </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+
                                                 @foreach (var item in Model)
                                                 {
                                                     <tr>
-                                                        <td> @Html.DisplayFor(modelItem => item.Name)</td>
-                                                        <td> @Html.DisplayFor(modelItem => item.Email)</td>
-                                                        <td> @Html.DisplayFor(modelItem => item.Phone)</td>
-
-                                                        <td><a href="@Url.Action("UserEdt","User",new {ID=item.ID})" title="Edit" class="font-20 text-primary"><i class="las la-edit"></i></a></td>
-                                                        <td><a href="@Url.Action("UserDlt","User",new {ID=item.ID})" title="Delete" class="font-20 text-primary"><i class="lar la-trash-alt text-danger font-20 mr-2"></i></a></td>
-
+                                                        <td>@item.StoreName</td>
+                                                        <td>@item.StoreID</td>
+                                                        <td>@item.AgentID</td>
+                                                        <td>@item.Remarks</td>
+                                                        
+                                                        <td><a href="@Url.Action("StoreEdit","Store",new {StID=item.StID})" title="Edit" class="font-20 text-primary"><i class="las la-edit"></i></a></td>
+                                                        <td><a href="@Url.Action("StoreDelete","Store",new {StID=item.StID})" title="Delete" class="font-20 text-primary"><i class="lar la-trash-alt text-danger font-20 mr-2"></i></a></td>
                                                     </tr>
                                                 }
+
+                                                <script>
+                                                    function myFunction() {
+                                                        var input, filter, table, tr, td, i, txtValue;
+                                                        input = document.getElementById("myInput");
+                                                        filter = input.value.toUpperCase();
+                                                        table = document.getElementById("basic-dt");
+                                                        tr = table.getElementsByTagName("tr");
+                                                        for (i = 0; i < tr.length; i++) {
+                                                            td = tr[i].getElementsByTagName("td")[0];
+                                                            if (td) {
+                                                                txtValue = td.textContent || td.innerText;
+                                                                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                                                    tr[i].style.display = "";
+                                                                } else {
+                                                                    tr[i].style.display = "none";
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                </script>
                                             </tbody>
                                             <tfoot>
                                                 <tr>
-                                                    <th>Name</th>
-                                                    <th>Mail</th>
-                                                    <th>Phone</th>
+                                                    <th>Store Name</th>
+                                                    <th>Store Code</th>
+                                                    <th>Agent Id</th>
+                                                    <th>Remarks</th>
+                                                    
+
 
                                                     <th></th>
                                                     <th></th>
@@ -106,10 +138,12 @@
                                 </div>
                             </div>
 
+
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+

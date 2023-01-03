@@ -7,7 +7,7 @@
 
 
 <!DOCTYPE html>
-<div id="content" class="main-content">
+
     <!--  Navbar Starts / Breadcrumb Area  -->
     <div class="sub-header-container">
         <header class="header navbar navbar-expand-sm">
@@ -63,7 +63,7 @@
                     <div class="container p-0">
                         <div class="row layout-top-spacing">
                             <div> <a href="~/Item/AddItem" class="btn btn-primary btn-rounded"> Add Product </a></div>
-                            
+
                             <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                                 <div class="widget-content widget-content-area br-6">
 
@@ -102,7 +102,7 @@
                                                         <td>@item.Discount</td>
                                                         <td>@item.Remarks</td>
                                                         <td><a href="@Url.Action("ItemEdit","Item",new {ID=item.ID})" title="Edit" class="font-20 text-primary"><i class="las la-edit"></i></a></td>
-                                                        <td><a href="@Url.Action("ItemDelete","Item",new {ID=item.ID})" title="Delete" class="font-20 text-primary"><i class="las la-trash-alt"></i></a></td>
+                                                        <td><a href="@Url.Action("ItemDelete","Item",new {ID=item.ID})" title="Delete" class="font-20 text-primary"><i class="lar la-trash-alt text-danger font-20 mr-2"></i></a></td>
                                                     </tr>
                                                 }
 
@@ -157,5 +157,4 @@
         </div>
     </div>
 
-
-</div>
+    

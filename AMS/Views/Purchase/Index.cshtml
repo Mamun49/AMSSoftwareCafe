@@ -1,0 +1,502 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<!DOCTYPE html>
+<div class="sub-header-container">
+    <header class="header navbar navbar-expand-sm">
+        <a href="javascript:void(0);" class="sidebarCollapse" data-placement="bottom">
+            <i class="las la-bars"></i>
+        </a>
+        <ul class="navbar-nav flex-row">
+            <li>
+                <div class="page-header">
+                    <nav class="breadcrumb-one" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Purchase</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><span>Purchase Update</span></li>
+
+                        </ol>
+                    </nav>
+                </div>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav d-flex align-center ml-auto right-side-filter">
+            <li class="nav-item more-dropdown">
+                <div class="input-group input-group-sm">
+                    <input id="rangeCalendarFlatpickr" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Select">
+                    <div class="input-group-append">
+                        <span class="input-group-text bg-primary border-primary" id="basic-addon2">
+                            <i class="lar la-calendar"></i>
+                        </span>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item more-dropdown">
+                <a href="javascript: void(0);" data-original-title="Reload Data" data-placement="bottom" class="btn btn-primary dash-btn btn-sm ml-2 bs-tooltip">
+                    <i class="las la-sync"></i>
+                </a>
+            </li>
+            <li class="nav-item custom-dropdown-icon">
+                <a href="javascript: void(0);" data-original-title="Filter" data-placement="bottom" id="customDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-primary dash-btn btn-sm ml-2 bs-tooltip">
+                    <i class="las la-filter"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="customDropdown">
+                    <a class="dropdown-item" data-value="Filter 1" href="javascript:void(0);">Filter 1</a>
+                    <a class="dropdown-item" data-value="Filter 2" href="javascript:void(0);">Filter 2</a>
+                    <a class="dropdown-item" data-value="Filter 3" href="javascript:void(0);">Filter 3</a>
+                </div>
+            </li>
+        </ul>
+    </header>
+</div>
+<div class="layout-px-spacing">
+    <div class="layout-top-spacing mb-2">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="container p-0">
+                    <div class="row layout-top-spacing">
+                        <div class="col-lg-9 layout-spacing">
+                            <div class="statbox widget box box-shadow mb-4">
+                                <div class="widget-header">
+                                    <div class="row">
+                                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                            <h4>Purchase Update</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="widget-content widget-content-area">
+                                    <div class="form-group row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <form class="needs-validation" novalidate action="javascript:void(0);">
+                                                <div class="form-row">
+                                                    <div class="col-md-4 mb-4">
+                                                        <label for="validationCustom01">Date</label>
+
+                                                        <input id="datepick" class="form-control flatpickr flatpickr-input active" type="date">
+
+                                                    </div>
+                                                    <div class="col-md-4 mb-4">
+                                                        <label for="validationCustom01">Year</label>
+                                                        <input type="number" class="form-control" disabled="disabled" value="@DateTime.Now.Year" placeholder="@DateTime.Now.Year" id="year">
+
+                                                    </div>
+                                                    <div class="col-md-4 mb-4">
+                                                        <label for="validationCustom02">Invoice No</label>
+                                                        @*<input type="text" class="form-control" id="memoid" disabled="disabled" placeholder="@ViewBag.Memo" value="@ViewBag.Memo">*@
+                                                        <select class="form-control" id="Invid"></select>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="form-row" hidden>
+                                                    <div class="col-md-6 mb-6">
+                                                        <label for="validationCustom01">Store To</label>
+                                                        <input type="text" class="form-control" id="memoid" disabled="disabled" placeholder="" value="">
+
+                                                    </div>
+                                                    <div class="col-md-6 mb-6">
+                                                        <label for="validationCustom02">Suppliers</label>
+                                                        <input type="text" class="form-control" id="memoid" disabled="disabled" placeholder="" value="">
+
+                                                    </div>
+
+                                                </div>
+                                                <br />
+
+                                                <div class="form-row">
+                                                    @*<div class="col-md-3 mb-3">
+            <label for="validationCustom01">Category</label>
+            <select class="form-control" id="Catid" disabled>
+
+            </select>
+
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="validationCustom01">Sub Category</label>
+            <select class="form-control" id="SubCatid" disabled>
+            </select>
+
+        </div>*@
+                                                    <div class="col-md-6 mb-6">
+                                                        <label for="validationCustom02">Item Name</label>
+                                                        <input type="email" class="form-control" id="itemname">
+
+                                                    </div>
+                                                    <div class="col-md-1 mb-1" hidden>
+                                                        <label for="validationCustom02">Item Name</label>
+                                                        <input type="email" class="form-control" id="id">
+
+                                                    </div>
+                                                    <div class="col-md-3 mb-3">
+                                                        <label for="validationCustom02">Size</label>
+                                                        <input type="email" class="form-control" id="size">
+
+                                                    </div>
+                                                    <div class="col-md-3 mb-3">
+                                                        <label for="validationCustom02">Color</label>
+                                                        <input type="email" class="form-control" id="colorid">
+
+                                                    </div>
+
+
+                                                </div>
+                                                <br />
+                                                <div class="form-row">
+                                                    
+                                                    <div class="col-md-3 mb-3">
+                                                        <label for="validationCustom02">QTY</label>
+                                                        <input type="email" class="form-control" id="qty">
+
+                                                    </div>
+                                                    <div class="col-md-3 mb-3">
+                                                        <label for="validationCustom01">Rate</label>
+                                                        <input type="email" class="form-control" id="rate">
+
+                                                    </div>
+                                                    <div class="col-md-3 mb-3">
+                                                        <label for="validationCustom01">Amount</label>
+                                                        <input type="email" class="form-control" disabled="disabled" id="amount">
+
+                                                    </div>
+                                                    @*<div class="col-md-2 mb-2">
+                                                            <label for="validationCustom02">Discount(%)</label>
+                                                            <input type="email" class="form-control" >
+
+                                                        </div>
+                                                        <div class="col-md-2 mb-2">
+                                                            <label for="validationCustom02">Discount</label>
+                                                            <input type="email" class="form-control" >
+
+                                                        </div>*@
+                                                    @*<div class="col-md-3 mb-3">
+                                                            <label for="validationCustom02">Gross Amount</label>
+                                                            <input type="email" class="form-control" disabled="disabled" id="grosamount">
+
+                                                        </div>*@
+                                                    <div class="col-md-3 mb-3">
+
+                                                        <br />
+                                                        <input type="submit" value="Update" class="btn btn-primary mt-3" id="btn-updt" />
+
+                                                    </div>
+
+                                                </div>
+
+                                                @*<input type="submit" value="Create" class="btn btn-primary mt-3" />*@
+
+                                            </form>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-3 layout-spacing">
+                            <div class="statbox widget box box-shadow mb-4">
+                                <div class="widget-header">
+                                    <div class="row">
+                                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                            <h4>Payment Master</h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="widget-content widget-content-area">
+                                    <div class="form-group row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <form class="needs-validation" novalidate action="javascript:void(0);">
+                                                <div class="form-row">
+                                                    <div class="col-md-12 mb-12">
+                                                        <label for="validationCustom01">Total Amount</label>
+                                                        <input type="email" class="form-control" id="totalamount" disabled="disabled">
+
+                                                    </div>
+                                                    <div class="col-md-12 mb-12">
+                                                        <label for="validationCustom02">Discount</label>
+                                                        <input type="email" class="form-control" disabled="disabled">
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="col-md-12 mb-12">
+                                                        <label for="validationCustom01">VAT</label>
+                                                        <input type="email" class="form-control" disabled="disabled">
+
+                                                    </div>
+                                                    <div class="col-md-12 mb-12">
+                                                        <label for="validationCustom02">Gross Amount</label>
+                                                        <input type="email" class="form-control" disabled="disabled">
+
+                                                    </div>
+
+                                                </div>
+
+
+
+                                                @*<input type="submit" value="Update Invoice" class="btn btn-primary mt-3" id="saveOrder" />*@
+
+                                            </form>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="table-responsive mb-9">
+                            <table id="basic-dt" class="table table-hover" style="width:70%">
+                                <thead>
+                                    <tr>
+
+
+
+
+                                        <th style="width:30%"> Item Name</th>
+                                        <th style="width:10%"> Size</th>
+                                        <th style="width:20%"> Color</th>
+                                        <th style="width:10%"> QTY</th>
+                                        <th style="width:10%"> Rate</th>
+
+                                        <th style="width:10%" id="col1"> Amount</th>
+
+
+                                        <th style="width:10%">Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        @*extra space*@
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#qty, #rate').keyup(function () {
+        var rate = parseFloat($('#qty').val()) || 0;
+        var box = parseFloat($('#rate').val()) || 0;
+
+        $('#amount').val(rate * box);
+    });
+    $("#datepick").change(function (e) {
+
+        $.get("/Purchase/InvoiceSearch", { date: $("#datepick").val() }, function (data) {
+            $("#Invid").empty();
+            $.each(data, function (index, row) {
+
+                $("#Invid").append("<option value='" + row + "'>" + row + "</option>")
+            });
+        });
+    });
+
+    $("#Invid").change(function () {
+        var Invid = $("#Invid option:selected").val();
+        //var htm = ``;
+        //htm = clearItem;
+
+        $.ajax({
+            type: "Get",
+            url: "/Purchase/GetPurchaseRecord",
+            data: {
+                Invid: Invid
+            },
+            success: function (response) {
+                //console.log(response);
+                //BindDataTable(response);
+                var htm = ``;
+                                    $.each(response, function (i, v1) {
+                                        htm += `
+                <tr>
+                <td style="display:none">`+ v1.ID + `</td>
+                <td>`+ v1.ITEMSL + `</td>
+                <td>`+ v1.SIZE + `</td>
+                <td>`+ v1.COLOR + `</td>
+                <td>`+ v1.QTY + `</td>
+                <td>`+ v1.RATE+ `</td>
+                <td>`+ v1.AMOUNT + `</td>
+              
+<td><button class='btn btn-info btn-lg btn-edit' type='button'>Edit</button></td>
+                </tr>
+                `;
+                                    });
+                
+                //window.location.href = "/Purchase/Index";
+                $("#basic-dt").html(htm);
+                
+                let total = 0;
+                let trCount = $('tr').length;
+                for (i = 0; i < trCount; i++) {
+                    let tdtext = $("tr:eq(" + i + ") td:eq(6)").text();
+                    total += Number(tdtext);
+                }
+                $("#totalamount").val(total);
+                
+            }
+        })
+        var tredit = null;
+        $('body').on('click', '.btn-edit', function () {
+            tredit = $(this).closest('tr');
+            var ID = $(tredit).find('td:eq(0)').text();
+            var ITEMSL = $(tredit).find('td:eq(1)').text();
+            var SIZE = $(tredit).find('td:eq(2)').text();
+            var COLOR = $(tredit).find('td:eq(3)').text();
+            var QTY = $(tredit).find('td:eq(4)').text();
+            var RATE = $(tredit).find('td:eq(5)').text();
+            var AMOUNT = $(tredit).find('td:eq(6)').text();
+
+            $('input[id="id"]').val(ID);
+            $('input[id="itemname"]').val(ITEMSL);
+            $('input[id="size"]').val(SIZE);
+            $('input[id="colorid"]').val(COLOR);
+            $('input[id="qty"]').val(QTY);
+            $('input[id="rate"]').val(RATE);
+            $('input[id="amount"]').val(AMOUNT);
+        });
+
+
+    })
+
+    $('#btn-updt').click(function () {
+        
+        var Invid = $("#Invid option:selected").val();
+        var ID = $('input[id="id"]').val();
+        var ITEMSL = $('input[id="itemname"]').val();
+        var SIZE = $('input[id="size"]').val();
+        var COLOR = $('input[id="colorid"]').val();
+        var QTY = $('input[id="qty"]').val();
+        var RATE = $('input[id="rate"]').val();
+            var AMOUNT = $('input[id="amount"]').val()
+        $.ajax({
+            url: '/Purchase/EditSave?ID=' + ID + '&ITEMSL=' + ITEMSL + '&SIZE=' + SIZE + '&COLOR=' + COLOR + '&QTY=' + QTY + '&RATE=' + RATE + '&AMOUNT=' + AMOUNT + '&INV=' + Invid,
+            type: 'post',
+            
+            success: function () {
+                alert("Record has been updated!!");
+                getdata();
+                
+                //tredit = null;
+                //ClearTextBox;
+            }
+        })
+        
+    });
+
+    function getdata() {
+        var Invid = $("#Invid option:selected").val();
+            $.ajax({
+                type: "Get",
+                url: "/Purchase/GetPurchaseRecord",
+                data: {
+                    Invid: Invid
+                },
+                success: function (response) {
+                    //console.log(response);
+                    //BindDataTable(response);
+                    
+                    
+                    var htm = ``;
+                    $.each(response, function (i, v1) {
+                        htm += `
+                <tr>
+                <td style="display:none">`+ v1.ID + `</td>
+                <td>`+ v1.ITEMSL + `</td>
+                <td>`+ v1.SIZE + `</td>
+                <td>`+ v1.COLOR + `</td>
+                <td>`+ v1.QTY + `</td>
+                <td>`+ v1.RATE + `</td>
+                <td>`+ v1.AMOUNT + `</td>
+              
+<td><button class='btn btn-info btn-lg btn-edit' type='button'>Edit</button></td>
+                </tr>
+                `;
+                    });
+
+                    //window.location.href = "/Purchase/Index";
+                    $("#basic-dt").html(htm);
+
+                    let total = 0;
+                    let trCount = $('tr').length;
+                    for (i = 0; i < trCount; i++) {
+                        let tdtext = $("tr:eq(" + i + ") td:eq(6)").text();
+                        total += Number(tdtext);
+                    }
+                    $("#totalamount").val(total);
+
+                }
+            })
+
+        
+
+    }
+
+    //function Edit(ID) {
+    //    $.ajax({
+    //        url: '/Purchase/EditOrder?ID=' + ID,
+    //        type: 'Get',
+    //        contentType: 'application/json;charset = utf-8',
+    //        dataType: 'json',
+    //        success: function (response) {
+    //            $('#id').val(response.ID);
+    //            $('#itemname').val(response.ITEMSL);
+    //            $('#size').val(response.SIZE);
+    //            $('#colorid').val(response.COLOR);
+    //            $('#qty').val(response.QTY);
+    //            $('#rate').val(response.RATE);
+    //            $('#amount').val(response.AMOUNT);
+    //        },
+    //        error: function () {
+    //            alert('Data Not Found!')
+    //        }
+    //    })
+
+    //}
+    //function UpdateEmployee()
+    //var objdata = {
+    //    ID: $('#id').val(),
+    //    ITEMSL: $('#itemname').val(),
+    //    SIZE: $('#size').val(),
+    //    COLOR: $('#colorid').val(),
+    //    QTY: $('#qty').val(),
+    //    RATE: $('#rate').val(),
+    //    AMOUNT: $('#amount').val()
+       
+    //}
+    //$.ajax({
+    //    url: '/Purchase/EditSave',
+    //    type: 'post',
+    //    data: objdata,
+    //    //contentType:'application/'
+    //    dataType: 'json',
+    //    success: function () {
+    //        alert('Data Save');
+    //        ClearTextBox;
+            
+    //    }
+    //})
+
+
+    //var BindDataTable = function (response) {
+    //    $("#basic-dt tbody").DataTable({
+    //        "aaData": response,
+    //        "aoColumns": [
+    //            { "mData": "ITEMSL" },
+    //            { "mData": "QTY" },
+    //            { "mData": "RATE" },
+    //            { "mData": "AMOUNT" },
+    //        ]
+    //    });
+
+   // }
+</script>

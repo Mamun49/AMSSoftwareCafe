@@ -1,7 +1,7 @@
-﻿@model AMS.Models.SubCategory
+﻿@model AMS.Models.PS_tbl
 
 @{
-
+    ViewBag.Title = "PSEdit";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -19,7 +19,8 @@
                         <nav class="breadcrumb-one" aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="javascript:void(0);">Setup</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><span>Sub Category Entry</span></li>
+                                <li class="breadcrumb-item active" aria-current="page"><span>Store</span></li>
+                                <li class="breadcrumb-item active" aria-current="page"><span>Store Edit</span></li>
                             </ol>
                         </nav>
                     </div>
@@ -29,7 +30,7 @@
             <ul class="navbar-nav d-flex align-center ml-auto right-side-filter">
                 <li class="nav-item more-dropdown">
                     <div class="input-group input-group-sm">
-                        <input id="rangeCalendarFlatpickr" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Select Date">
+                        <input id="rangeCalendarFlatpickr" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Select">
                         <div class="input-group-append">
                             <span class="input-group-text bg-primary border-primary" id="basic-addon2">
                                 <i class="lar la-calendar"></i>
@@ -66,7 +67,7 @@
                                     <div class="widget-header">
                                         <div class="row">
                                             <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                                <h4>Sub Category Entry</h4>
+                                                <h4>Store Edit</h4>
                                             </div>
                                         </div>
                                     </div>
@@ -79,21 +80,39 @@
                                                     @Html.AntiForgeryToken()
                                                     <form class="needs-validation" novalidate action="javascript:void(0);">
                                                         <div class="form-row">
-                                                            <div class="col-md-4 mb-4">
-                                                                <label for="validationCustom01">Category List</label>
-                                                                @Html.DropDownListFor(model => model.CID, new SelectList(ViewBag.CatList, "Value", "Text"), "Select Category", new { @class = "form-control" })
-                                                                @Html.ValidationMessageFor(model => model.CID, "", new { @class = "text-danger" })
+                                                            <div class="col-md-5 mb-5">
+                                                                <label for="validationCustom01">Suppliers Name</label>
+                                                                @Html.EditorFor(model => model.PSName, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.PSName, "", new { @class = "text-danger" })
 
                                                             </div>
-                                                            <div class="col-md-6 mb-6">
-                                                                <label for="validationCustom02">Input Sub Category</label>
-                                                                @Html.EditorFor(model => model.SubCatName, new { htmlAttributes = new { @class = "form-control" } })
-                                                                @Html.ValidationMessageFor(model => model.SubCatName, "", new { @class = "text-danger" })
+                                                            <div class="col-md-5 mb-5">
+                                                                <label for="validationCustom02">Mobile</label>
+                                                                @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
 
                                                             </div>
 
                                                         </div>
-                                                        <input type="submit" value="Create" class="btn btn-primary mt-3" />
+                                                        <div class="form-row">
+                                                            <div class="col-md-5 mb-5">
+                                                                <label for="validationCustom01">Address</label>
+                                                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+
+                                                            </div>
+                                                            <div class="col-md-5 mb-5">
+                                                                <label for="validationCustom02">Remarks</label>
+                                                                @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+
+                                                            </div>
+
+                                                        </div>
+
+
+
+                                                        <input type="submit" value="Update" class="btn btn-primary mt-3" />
 
                                                     </form>
                                                 }
@@ -102,9 +121,6 @@
                                     </div>
                                 </div>
 
-                                <div class="tablerow">
-                                    
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -112,18 +128,3 @@
             </div>
         </div>
     </div>
-    <script>
-        $(document).ready(function () {
-            $("#CID").change(function () {
-                $.get("/SubCategory/GetCategoryList",{ CID: $("#CID").val() }, function (data) {
-                    $('.tablerow').empty();
-                    
-                    $.each(data, function (index, row) {
-                        /*var row = "<tr><td>" + row.SubCatName + "</td></tr>";*/
-                        $('.tablerow').append("<option>"+row.SubCatName+" </option>")
-                    });
-                });
-            })
-        });
-    </script>
-

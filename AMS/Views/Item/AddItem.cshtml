@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <!DOCTYPE html>
-<div id="content" class="main-content">
+
     <!--  Navbar Starts / Breadcrumb Area  -->
     <div class="sub-header-container">
         <header class="header navbar navbar-expand-sm">
@@ -134,6 +134,8 @@
                                                                 @Html.EditorFor(model => model.DiscountTp, new { htmlAttributes = new { @class = "form-control" } })
                                                                 @Html.ValidationMessageFor(model => model.DiscountTp, "", new { @class = "text-danger" })
 
+
+
                                                             </div>
 
                                                         </div>
@@ -171,15 +173,15 @@
     <script>
         $(document).ready(function () {
             $("#CID").change(function () {
-                $.get("/Item/GetCategoryList",{ CID: $("#CID").val() }, function (data) {
+                $.get("/Item/GetCategoryList", { CID: $("#CID").val() }, function (data) {
                     $("#SCID").empty();
 
                     $.each(data, function (index, row) {
                         /*var row = "<tr><td>" + row.SubCatName + "</td></tr>";*/
-                        $("#SCID").append("<option value= '"+row.SCID+"'>"+row.SubCatName+" </option>")
+                        $("#SCID").append("<option value= '" + row.SCID + "'>" + row.SubCatName + " </option>")
                     });
                 });
             })
         });
     </script>
-</div>
+    

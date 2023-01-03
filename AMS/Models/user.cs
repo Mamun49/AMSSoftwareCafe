@@ -20,7 +20,7 @@ namespace AMS.Models
         [DisplayName("Phone Number")]
         public int? Phone { get; set; }
 
-        public int? Role { get; set; }
+        public string Role { get; set; }
         [Required]
         [StringLength(50)]
         [EmailAddress]
@@ -42,5 +42,6 @@ namespace AMS.Models
 
         [StringLength(10)]
         public string UpdBy { get; set; }
+       
     }
 }

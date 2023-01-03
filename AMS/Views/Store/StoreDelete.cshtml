@@ -1,7 +1,7 @@
-﻿@model AMS.Models.STK_Item
+﻿@model AMS.Models.Store_tbl
 
 @{
-    ViewBag.Title = "ItemDelete";
+   
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -18,8 +18,9 @@
                     <div class="page-header">
                         <nav class="breadcrumb-one" aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">Product</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><span>Product Delete</span></li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Setup</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><span>Store</span></li>
+                                <li class="breadcrumb-item active" aria-current="page"><span>Store Delete</span></li>
                             </ol>
                         </nav>
                     </div>
@@ -29,7 +30,7 @@
             <ul class="navbar-nav d-flex align-center ml-auto right-side-filter">
                 <li class="nav-item more-dropdown">
                     <div class="input-group input-group-sm">
-                        <input id="rangeCalendarFlatpickr" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Select Date">
+                        <input id="rangeCalendarFlatpickr" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Select">
                         <div class="input-group-append">
                             <span class="input-group-text bg-primary border-primary" id="basic-addon2">
                                 <i class="lar la-calendar"></i>
@@ -56,69 +57,33 @@
         </header>
     </div>
 
-    <h3>Are you sure you want to delete this product?</h3>
+    <h3>Are you sure you want to delete this Store?</h3>
     <div>
-
+        
         <hr />
         <dl class="dl-horizontal">
-
-
-
-
             <dt>
-                @Html.DisplayNameFor(model => model.ItemName)
+                @Html.DisplayNameFor(model => model.StoreName)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.ItemName)
+                @Html.DisplayFor(model => model.StoreName)
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.ItemCode)
+                @Html.DisplayNameFor(model => model.StoreID)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.ItemCode)
+                @Html.DisplayFor(model => model.StoreID)
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Brand)
+                @Html.DisplayNameFor(model => model.AgentID)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Brand)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Unit)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Unit)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.MinStock)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.MinStock)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.DiscountTp)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.DiscountTp)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Discount)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Discount)
+                @Html.DisplayFor(model => model.AgentID)
             </dd>
 
             <dt>
@@ -129,6 +94,18 @@
                 @Html.DisplayFor(model => model.Remarks)
             </dd>
 
+            <dt>
+                @Html.DisplayNameFor(model => model.InsBy)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.InsBy)
+            </dd>
+
+            
+
+            
+
         </dl>
 
         @using (Html.BeginForm())
@@ -137,8 +114,6 @@
 
             <div class="form-actions no-color">
                 <input type="submit" value="Delete" class="btn btn-default" />
-
             </div>
         }
     </div>
-   

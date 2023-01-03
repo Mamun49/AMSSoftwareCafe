@@ -1,10 +1,9 @@
-﻿@model AMS.Models.Category
-
-
+﻿@model AMS.Models.PS_tbl
 @{
 
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
 <!DOCTYPE html>
 
     <!--  Navbar Starts / Breadcrumb Area  -->
@@ -19,7 +18,7 @@
                         <nav class="breadcrumb-one" aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="javascript:void(0);">Setup</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><span>Category</span></li>
+                                <li class="breadcrumb-item active" aria-current="page"><span>Supliers</span></li>
                             </ol>
                         </nav>
                     </div>
@@ -69,28 +68,40 @@
                                         <div class="widget-header">
                                             <div class="row">
                                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                                    <h4>Category</h4>
+                                                    <h4>Supliers Entry</h4>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="widget-content widget-content-area">
 
-                                            <div class="form-group" hidden>
-                                                <label>
-                                                    Input Category Name:
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                @Html.EditorFor(model => model.CID, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.CID, "", new { @class = "text-danger" })
+                                            <div class="form-row">
+                                                <div class="col-md-5 mb-5">
+                                                    <label for="validationCustom01">Suppliers Name</label>
+                                                    @Html.EditorFor(model => model.PSName, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.PSName, "", new { @class = "text-danger" })
+
+                                                </div>
+                                                <div class="col-md-5 mb-5">
+                                                    <label for="validationCustom02">Mobile Number</label>
+                                                    @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+
+                                                </div>
 
                                             </div>
-                                            <div class="form-group">
-                                                <label>
-                                                    Input Category Name:
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                @Html.EditorFor(model => model.CatName, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.CatName, "", new { @class = "text-danger" })
+                                            <div class="form-row">
+                                                <div class="col-md-5 mb-5">
+                                                    <label for="validationCustom01">Address</label>
+                                                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+
+                                                </div>
+                                                <div class="col-md-5 mb-5">
+                                                    <label for="validationCustom02">Remarks</label>
+                                                    @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+
+                                                </div>
 
                                             </div>
 
@@ -111,7 +122,10 @@
                                         <table id="basic-dt" class="table table-hover" style="width:100%">
                                             <thead>
                                                 <tr>
-                                                    <th> Category Name</th>
+                                                    <th> Suppliers Name</th>
+                                                    <th> Mobile</th>
+                                                    <th> Address</th>
+                                                    <th> Remarks</th>
 
 
                                                     <th class="no-content"></th>
@@ -121,14 +135,17 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if (ViewBag.CatList != null)
+                                                @if (ViewBag.PSList != null)
                                                 {
-                                                    foreach (var item in ViewBag.CatList)
+                                                    foreach (var item in ViewBag.PSList)
                                                     {
                                                         <tr>
-                                                            <td>@item.CatName</td>
-                                                            <td><a href="@Url.Action("CatEdit","Category",new {CID=item.CID})" title="Edit" class="font-20 text-primary"><i class="las la-edit"></i></a></td>
-                                                            <td><a href="@Url.Action("CatDelete","Category",new {CID=item.CID})" title="Delete" class="font-20 text-primary"><i class="lar la-trash-alt text-danger font-20 mr-2"></i></a></td>
+                                                            <td>@item.PSName</td>
+                                                            <td>@item.Mobile</td>
+                                                            <td>@item.Address</td>
+                                                            <td>@item.Remarks</td>
+                                                            <td><a href="@Url.Action("PSEdit","PS",new {ID=item.ID})" title="Edit" class="font-20 text-primary"><i class="las la-edit"></i></a></td>
+                                                            <td><a href="@Url.Action("PSDelete","PS",new {ID=item.ID})" title="Delete" class="font-20 text-primary"><i class="lar la-trash-alt text-danger font-20 mr-2"></i></a></td>
                                                         </tr>
                                                     }
                                                 }
@@ -155,7 +172,10 @@
                                             </tbody>
                                             <tfoot>
                                                 <tr>
-                                                    <th>Category</th>
+                                                    <th>Suppliers Name</th>
+                                                    <th>Mobile</th>
+                                                    <th>Address</th>
+                                                    <th>Remarks</th>
 
 
                                                     <th></th>
@@ -175,11 +195,6 @@
             </div>
         </div>
     </div>
-    
-
-
-
-
 
 
 

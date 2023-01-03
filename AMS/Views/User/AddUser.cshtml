@@ -1,11 +1,11 @@
 ﻿@model AMS.Models.user
 
 @{
-    ViewBag.Title = "Add User";
+    
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div id="content" class="main-content">
+
 
     <div class="sub-header-container">
         <header class="header navbar navbar-expand-sm">
@@ -96,7 +96,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-5">
-                    @Html.EditorFor(model => model.Role, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.DropDownListFor(model => model.Role, new SelectList(ViewBag.Role, "Value", "Text"), "Select Role", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -147,4 +147,3 @@
     }
 
     
-</div>

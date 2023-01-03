@@ -57,6 +57,13 @@ namespace AMS.Controllers
         }
         public ActionResult ItemEdit(int ID)
         {
+            var CatList = new List<SelectListItem>();
+            var CategoryList = GetCategories();
+            foreach (var item in CategoryList)
+            {
+                CatList.Add(new SelectListItem { Text = item.CatName, Value = item.CID.ToString() });
+            }
+            ViewBag.CatList = CatList;
             return View(db.STK_Items.Where(x => x.ID.Equals(ID)).FirstOrDefault());
         }
         [HttpPost]

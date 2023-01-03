@@ -18,6 +18,14 @@ namespace AMS.Controllers
         }
         public ActionResult AddUser()
         {
+            var mode = new List<SelectListItem>();
+            {
+                mode.Add(new SelectListItem { Text = "Admin", Value = "Admin" });
+                mode.Add(new SelectListItem { Text = "Agent", Value = "Agent" });
+                mode.Add(new SelectListItem { Text = "Suppliers", Value = "Suppliers" });
+                
+            };
+            ViewBag.Role = mode;
             return View();
         }
         
@@ -38,7 +46,7 @@ namespace AMS.Controllers
             else
             {
                 model.CretDate = DateTime.Now;
-                model.CretBy="1";
+                model.CretBy="SuperAdmin";
                 model.UpdDate = null;
                 model.UpdBy = null;
 

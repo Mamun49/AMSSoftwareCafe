@@ -20,7 +20,19 @@ namespace AMS.Controllers
         [HttpPost]
         public ActionResult Index(user model)
         {
-
+            //HttpCookie cookie = new HttpCookie("softcafe");
+            //if (model.Rememberme == true)
+            //{
+            //    cookie["mail"] = model.Email;
+            //    cookie["password"] = model.Pass;
+            //    cookie.Expires = DateTime.Now.AddDays(6);
+            //    HttpContext.Response.Cookies.Add(cookie);
+            //}
+            //else
+            //{
+            //    cookie.Expires = DateTime.Now.AddDays(-1);
+            //    HttpContext.Response.Cookies.Add(cookie);
+            //}
 
             var checkLogin = db.users.Where(x => x.Email.Equals(model.Email) && x.Pass.Equals(model.Pass)).FirstOrDefault();
             if (checkLogin != null)

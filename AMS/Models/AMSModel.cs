@@ -16,6 +16,10 @@ namespace AMS.Models
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<SubCategory> SubCategories { get; set; }
         public virtual DbSet<STK_Item> STK_Items { get; set; }
+        public virtual DbSet<Store_tbl> Store_tbls { get; set; }
+        public virtual DbSet<PS_tbl> PS_Tbls { get; set; }
+        public virtual DbSet<STK_Trans>STK_Trans { get; set; }
+        public virtual DbSet<STK_TRANSMST> STK_TRANSMSTs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
