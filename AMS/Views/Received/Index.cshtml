@@ -3,7 +3,7 @@
 
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     List<SelectListItem> Storelist = ViewBag.Storelist;
-    List<SelectListItem> Supplist = ViewBag.SuppList;
+    //List<SelectListItem> Supplist = ViewBag.SuppList;
     List<SelectListItem> Catlist = ViewBag.CatList;
 }
 
@@ -20,8 +20,8 @@
                 <div class="page-header">
                     <nav class="breadcrumb-one" aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Purchase</a></li>
-                            <li class="breadcrumb-item active" aria-current="page"><span>Purchase Entry</span></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Issue</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><span>Received Item</span></li>
 
                         </ol>
                     </nav>
@@ -69,7 +69,7 @@
                                 <div class="widget-header">
                                     <div class="row">
                                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                            <h4>Purchase Form</h4>
+                                            <h4>Received Item Form</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -81,8 +81,8 @@
                                                     <div class="col-md-4 mb-4">
                                                         <label for="validationCustom01">Date</label>
 
-                                                        <input id="datepick" class="form-control flatpickr flatpickr-input active" type="date">
-                                                        
+                                                        <input id="datepick" class="form-control flatpickr flatpickr-input active" type="date" required value="today();">
+
                                                     </div>
                                                     <div class="col-md-4 mb-4">
                                                         <label for="validationCustom01">Year</label>
@@ -99,7 +99,7 @@
                                                 </div>
                                                 <div class="form-row">
                                                     <div class="col-md-6 mb-6">
-                                                        <label for="validationCustom01">Store To</label>
+                                                        <label for="validationCustom01">Store From</label>
                                                         <select class="form-control" id="storeid">
                                                             @for (int i = 0; i < Storelist.Count; i++)
                                                             {
@@ -110,14 +110,21 @@
 
                                                     </div>
                                                     <div class="col-md-6 mb-6">
-                                                        <label for="validationCustom02">Suppliers</label>
+                                                        <label for="validationCustom02">Store To</label>
                                                         <select class="form-control" id="suppid">
-                                                            @for (int i = 0; i < Supplist.Count; i++)
+                                                            @for (int i = 0; i < Storelist.Count; i++)
                                                             {
 
-                                                                <option value="@Supplist[i].Value">@Supplist[i].Text</option>
+                                                                <option value="@Storelist[i].Value">@Storelist[i].Text</option>
                                                             }
                                                         </select>
+                                                        @*<select class="form-control" id="suppid">
+                                                                @for (int i = 0; i < Supplist.Count; i++)
+                                                                {
+
+                                                                    <option value="@Supplist[i].Value">@Supplist[i].Text</option>
+                                                                }
+                                                            </select>*@
 
                                                     </div>
 
@@ -305,7 +312,7 @@
     $(document).ready(function () {
         var emptyrow = "<tr><td colspan='5' class = 'text-center'> Add Product</td></tr>";
         $("#Catid").change(function () {
-            $.get("/Transfer/GetCategoryList", { CID: $("#Catid").val() }, function (data) {
+            $.get("/Received/GetCategoryList", { CID: $("#Catid").val() }, function (data) {
                 $("#SubCatid").empty();
 
                 $.each(data, function (index, row) {
@@ -356,7 +363,7 @@
         $("#totalamount").val(total);
     });
 
-    
+
     //After Add A New Order In The List, Clear Clean The Form For Add More Order.
     function clearItem() {
         $("#itemname").val('');
@@ -380,14 +387,14 @@
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             type: 'POST',
-            url: "/Transfer/SaveProduct",
+            url: "/Received/SaveProduct",
             data: data,
             success: function (result) {
                 alert(result);
                 location.reload();
             },
             error: function () {
-                alert("Error!")
+                alert("Error! Select Date")
             }
         });
     }
@@ -399,7 +406,7 @@
 
         $.each($("#basic-dt tbody tr"), function () {
             orderArr.push({
-               
+
                 ITEMSL: $(this).find('td:eq(0)').html(),
                 SIZE: $(this).find('td:eq(1)').html(),
                 COLOR: $(this).find('td:eq(2)').html(),
@@ -414,8 +421,8 @@
             TRANSDT : $("#datepick").val(),
             TRANSYY : $("#year").val(),
             TRANSNO : $("#memoid").val(),
-            STORETO : $("#storeid option:selected").val(),
-            PSID : $("#suppid option:selected").val(),
+            STOREFR : $("#storeid option:selected").val(),
+            STORETO : $("#suppid option:selected").val(),
             TotalAmount: $("#totalamount").val(),
             order: orderArr
         });
@@ -428,4 +435,6 @@
     });
 
 </script>
+
+
 

@@ -18,7 +18,7 @@
                         <nav class="breadcrumb-one" aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="javascript:void(0);">Setup</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><span>Supliers</span></li>
+                                <li class="breadcrumb-item active" aria-current="page"><span>Agents</span></li>
                             </ol>
                         </nav>
                     </div>
@@ -68,12 +68,23 @@
                                         <div class="widget-header">
                                             <div class="row">
                                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                                    <h4>Supliers Entry</h4>
+                                                    <h4>Agent Entry</h4>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="widget-content widget-content-area">
 
+                                            <div class="form-row">
+                                                <div class="col-md-10 mb-10">
+                                                    <label for="validationCustom01">Agent Type</label>
+                                                    @Html.DropDownListFor(model => model.Type, new SelectList(ViewBag.list, "Value", "Text"), "Select Agent Type", new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+
+                                                </div>
+                                                
+
+                                            </div>
+                                            <br/>
                                             <div class="form-row">
                                                 <div class="col-md-5 mb-5">
                                                     <label for="validationCustom01">Suppliers Name</label>
@@ -89,6 +100,7 @@
                                                 </div>
 
                                             </div>
+
                                             <div class="form-row">
                                                 <div class="col-md-5 mb-5">
                                                     <label for="validationCustom01">Address</label>
@@ -122,10 +134,11 @@
                                         <table id="basic-dt" class="table table-hover" style="width:100%">
                                             <thead>
                                                 <tr>
-                                                    <th> Suppliers Name</th>
+                                                    <th> Agent Name</th>
                                                     <th> Mobile</th>
                                                     <th> Address</th>
                                                     <th> Remarks</th>
+                                                    <th> Agent Type</th>
 
 
                                                     <th class="no-content"></th>
@@ -144,6 +157,7 @@
                                                             <td>@item.Mobile</td>
                                                             <td>@item.Address</td>
                                                             <td>@item.Remarks</td>
+                                                            <td>@item.Type</td>
                                                             <td><a href="@Url.Action("PSEdit","PS",new {ID=item.ID})" title="Edit" class="font-20 text-primary"><i class="las la-edit"></i></a></td>
                                                             <td><a href="@Url.Action("PSDelete","PS",new {ID=item.ID})" title="Delete" class="font-20 text-primary"><i class="lar la-trash-alt text-danger font-20 mr-2"></i></a></td>
                                                         </tr>
@@ -176,6 +190,7 @@
                                                     <th>Mobile</th>
                                                     <th>Address</th>
                                                     <th>Remarks</th>
+                                                    <th>Type</th>
 
 
                                                     <th></th>

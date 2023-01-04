@@ -13,6 +13,13 @@ namespace AMS.Controllers
         // GET: PS
         public ActionResult Index()
         {
+            var mode = new List<SelectListItem>();
+            {
+                mode.Add(new SelectListItem { Text = "Suppliers", Value = "Suppliers" });
+                mode.Add(new SelectListItem { Text = "Party", Value = "Party" });
+               
+            };
+            ViewBag.list = mode;
             List<PS_tbl> PSList = db.PS_Tbls.ToList();
             ViewBag.PSList = PSList;
             return View();
@@ -20,13 +27,23 @@ namespace AMS.Controllers
         [HttpPost]
         public ActionResult Index(PS_tbl model)
         {
-            db.PS_Tbls.Add(model);
-            db.SaveChanges();
-            ModelState.Clear();
-            return RedirectToAction("Index");
+           
+                
+                db.PS_Tbls.Add(model);
+                db.SaveChanges();
+                ModelState.Clear();
+                return RedirectToAction("Index");
+            
         }
         public ActionResult PSEdit(int ID)
         {
+            var mode = new List<SelectListItem>();
+            {
+                mode.Add(new SelectListItem { Text = "Suppliers", Value = "Suppliers" });
+                mode.Add(new SelectListItem { Text = "Party", Value = "Party" });
+
+            };
+            ViewBag.list = mode;
             return View(db.PS_Tbls.Where(x => x.ID.Equals(ID)).FirstOrDefault());
         }
         [HttpPost]
@@ -39,6 +56,7 @@ namespace AMS.Controllers
                 mod.Mobile = model.Mobile;
                 mod.Address = model.Address;
                 mod.Remarks = model.Remarks;
+                mod.Type = model.Type;
                 db.SaveChanges();
 
                 return RedirectToAction("Index", "PS");

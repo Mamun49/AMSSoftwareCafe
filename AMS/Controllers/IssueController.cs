@@ -1,24 +1,21 @@
 ﻿using AMS.Models;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
 namespace AMS.Controllers
 {
-    public class PurchaseController : Controller
+    public class IssueController : Controller
     {
         AMSModel db = new AMSModel();
-        // GET: Transfer
+        // GET: Issue
         public ActionResult Index()
         {
             var Random = new Random();
             var num = Random.Next(0, 10000);
-            var memo = "Inv" + "-" + Convert.ToString(num) + "/PUR-" + DateTime.Now.Year;
+            var memo = "Inv" + "-" + Convert.ToString(num) + "/ISU-" + DateTime.Now.Year;
             ViewBag.Memo = memo;
             var StoreList = new List<SelectListItem>();
             var storeList = GetStoreList();
@@ -51,8 +48,7 @@ namespace AMS.Controllers
         }
         private List<PS_tbl> GetSuppList()
         {
-            List<PS_tbl> SuppList = db.PS_Tbls.Where(x=>x.Type== "Suppliers").ToList();
-            //List<STK_Trans> List = db.STK_Trans.Where(x => x.TRANSNO == Invid).ToList();
+            List<PS_tbl> SuppList = db.PS_Tbls.ToList();
 
             return SuppList;
         }
@@ -66,8 +62,7 @@ namespace AMS.Controllers
             List<SubCategory> Subcat = db.SubCategories.Where(x => x.CID == CID).ToList();
             return Json(Subcat, JsonRequestBehavior.AllowGet);
         }
-
-        public ActionResult SaveProduct(string TRANSDT, string TRANSNO, string STORETO, int PSID, string TRANSYY, int TotalAmount, STK_Trans[] order)
+        public ActionResult SaveProduct(string TRANSDT, string TRANSNO, string STOREFR, string STORETO, string TRANSYY, int TotalAmount, STK_Trans[] order)
         {
             string result = "Error! Order Is Not Complete!";
 
@@ -79,8 +74,8 @@ namespace AMS.Controllers
                 obj.TRANSYY = TRANSYY;
                 obj.TRANSNO = TRANSNO;
                 obj.STORETO = STORETO;
-                obj.PSID = PSID;
-                obj.TRANSTP = "Purchase";
+                obj.STOREFR = STOREFR;
+                obj.TRANSTP = "Issue";
                 obj.InsBy = "admin";
                 obj.InsDate = DateTime.Now;
                 obj.ITEMSL = item.ITEMSL;
@@ -98,10 +93,10 @@ namespace AMS.Controllers
             STK_TRANSMST add = new STK_TRANSMST();
             add.InsBy = "admin";
             add.InsDate = DateTime.Now;
-            add.PSID = PSID;
+            add.StoreFrom = STOREFR;
             add.StoreTo = STORETO;
             add.TransNo = TRANSNO;
-            add.TransTP = "Purchase";
+            add.TransTP = "Issue";
             add.TransYear = TRANSYY;
             add.TransDate = Convert.ToDateTime(TRANSDT);
             add.TotalAmount = TotalAmount;
@@ -113,6 +108,9 @@ namespace AMS.Controllers
             result = "Success! Order Is Complete!";
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-
+        public ActionResult Mod()
+        {
+            return View();
+        }
     }
 }

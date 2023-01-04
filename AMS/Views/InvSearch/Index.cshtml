@@ -1,15 +1,7 @@
-﻿
-@{
-
+﻿@{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    List<SelectListItem> Storelist = ViewBag.Storelist;
-    List<SelectListItem> Supplist = ViewBag.SuppList;
-    List<SelectListItem> Catlist = ViewBag.CatList;
 }
-
 <!DOCTYPE html>
-
-<!--  Navbar Starts / Breadcrumb Area  -->
 <div class="sub-header-container">
     <header class="header navbar navbar-expand-sm">
         <a href="javascript:void(0);" class="sidebarCollapse" data-placement="bottom">
@@ -20,8 +12,8 @@
                 <div class="page-header">
                     <nav class="breadcrumb-one" aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Purchase</a></li>
-                            <li class="breadcrumb-item active" aria-current="page"><span>Purchase Entry</span></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Invoice</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><span>Invoice Update</span></li>
 
                         </ol>
                     </nav>
@@ -69,7 +61,7 @@
                                 <div class="widget-header">
                                     <div class="row">
                                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                            <h4>Purchase Form</h4>
+                                            <h4>Invoice Update</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -81,7 +73,7 @@
                                                     <div class="col-md-4 mb-4">
                                                         <label for="validationCustom01">Date</label>
 
-                                                        <input id="datepick" class="form-control flatpickr flatpickr-input active" value="today();" type="date" required>
+                                                        <input id="datepick" class="form-control flatpickr flatpickr-input active" type="date">
 
                                                     </div>
                                                     <div class="col-md-4 mb-4">
@@ -91,33 +83,21 @@
                                                     </div>
                                                     <div class="col-md-4 mb-4">
                                                         <label for="validationCustom02">Invoice No</label>
-                                                        <input type="text" class="form-control" id="memoid" disabled="disabled" placeholder="@ViewBag.Memo" value="@ViewBag.Memo">
-
+                                                        @*<input type="text" class="form-control" id="memoid" disabled="disabled" placeholder="@ViewBag.Memo" value="@ViewBag.Memo">*@
+                                                        <select class="form-control" id="Invid"></select>
                                                     </div>
 
 
                                                 </div>
-                                                <div class="form-row">
+                                                <div class="form-row" hidden>
                                                     <div class="col-md-6 mb-6">
                                                         <label for="validationCustom01">Store To</label>
-                                                        <select class="form-control" id="storeid">
-                                                            @for (int i = 0; i < Storelist.Count; i++)
-                                                            {
-
-                                                                <option value="@Storelist[i].Value">@Storelist[i].Text</option>
-                                                            }
-                                                        </select>
+                                                        <input type="text" class="form-control" id="memoid" disabled="disabled" placeholder="" value="">
 
                                                     </div>
                                                     <div class="col-md-6 mb-6">
                                                         <label for="validationCustom02">Suppliers</label>
-                                                        <select class="form-control" id="suppid">
-                                                            @for (int i = 0; i < Supplist.Count; i++)
-                                                            {
-
-                                                                <option value="@Supplist[i].Value">@Supplist[i].Text</option>
-                                                            }
-                                                        </select>
+                                                        <input type="text" class="form-control" id="memoid" disabled="disabled" placeholder="" value="">
 
                                                     </div>
 
@@ -125,34 +105,30 @@
                                                 <br />
 
                                                 <div class="form-row">
-                                                    <div class="col-md-3 mb-3">
-                                                        <label for="validationCustom01">Category</label>
-                                                        <select class="form-control" id="Catid">
-                                                            @for (int i = 0; i < Catlist.Count; i++)
-                                                            {
+                                                    @*<div class="col-md-3 mb-3">
+                                                            <label for="validationCustom01">Category</label>
+                                                            <select class="form-control" id="Catid" disabled>
 
-                                                                <option value="@Catlist[i].Value">@Catlist[i].Text</option>
-                                                            }
-                                                        </select>
+                                                            </select>
 
-                                                    </div>
-                                                    <div class="col-md-3 mb-3">
-                                                        <label for="validationCustom01">Sub Category</label>
-                                                        <select class="form-control" id="SubCatid">
-                                                        </select>
+                                                        </div>
+                                                        <div class="col-md-3 mb-3">
+                                                            <label for="validationCustom01">Sub Category</label>
+                                                            <select class="form-control" id="SubCatid" disabled>
+                                                            </select>
 
-                                                    </div>
+                                                        </div>*@
                                                     <div class="col-md-6 mb-6">
                                                         <label for="validationCustom02">Item Name</label>
                                                         <input type="email" class="form-control" id="itemname">
 
                                                     </div>
+                                                    <div class="col-md-1 mb-1" hidden>
+                                                        <label for="validationCustom02">Item Name</label>
+                                                        <input type="email" class="form-control" id="id">
 
-
-                                                </div>
-                                                <br />
-                                                <div class="form-row">
-                                                    <div class="col-md-2 mb-2">
+                                                    </div>
+                                                    <div class="col-md-3 mb-3">
                                                         <label for="validationCustom02">Size</label>
                                                         <input type="email" class="form-control" id="size">
 
@@ -162,17 +138,23 @@
                                                         <input type="email" class="form-control" id="colorid">
 
                                                     </div>
-                                                    <div class="col-md-2 mb-2">
+
+
+                                                </div>
+                                                <br />
+                                                <div class="form-row">
+
+                                                    <div class="col-md-3 mb-3">
                                                         <label for="validationCustom02">QTY</label>
                                                         <input type="email" class="form-control" id="qty">
 
                                                     </div>
-                                                    <div class="col-md-2 mb-2">
+                                                    <div class="col-md-3 mb-3">
                                                         <label for="validationCustom01">Rate</label>
                                                         <input type="email" class="form-control" id="rate">
 
                                                     </div>
-                                                    <div class="col-md-2 mb-2">
+                                                    <div class="col-md-3 mb-3">
                                                         <label for="validationCustom01">Amount</label>
                                                         <input type="email" class="form-control" disabled="disabled" id="amount">
 
@@ -192,10 +174,10 @@
                                                             <input type="email" class="form-control" disabled="disabled" id="grosamount">
 
                                                         </div>*@
-                                                    <div class="col-md-1 mb-1">
+                                                    <div class="col-md-3 mb-3">
 
                                                         <br />
-                                                        <input type="submit" value="Add" class="btn btn-primary mt-3" id="additem" />
+                                                        <input type="submit" value="Update" class="btn btn-primary mt-3" id="btn-updt" />
 
                                                     </div>
 
@@ -229,7 +211,7 @@
                                                 <div class="form-row">
                                                     <div class="col-md-12 mb-12">
                                                         <label for="validationCustom01">Total Amount</label>
-                                                        <input type="email" class="form-control" id="totalamount">
+                                                        <input type="email" class="form-control" id="totalamount" disabled="disabled">
 
                                                     </div>
                                                     <div class="col-md-12 mb-12">
@@ -255,7 +237,7 @@
 
 
 
-                                                <input type="submit" value="Save Invoice" class="btn btn-primary mt-3" id="saveOrder" />
+                                                @*<input type="submit" value="Update Invoice" class="btn btn-primary mt-3" id="saveOrder" />*@
 
                                             </form>
 
@@ -302,130 +284,219 @@
     </div>
 </div>
 <script>
-    $(document).ready(function () {
-        var emptyrow = "<tr><td colspan='5' class = 'text-center'> Add Product</td></tr>";
-        $("#Catid").change(function () {
-            $.get("/Purchase/GetCategoryList", { CID: $("#Catid").val() }, function (data) {
-                $("#SubCatid").empty();
-
-                $.each(data, function (index, row) {
-                    /*var row = "<tr><td>" + row.SubCatName + "</td></tr>";*/
-                    $("#SubCatid").append("<option value= '" + row.SCID + "'>" + row.SubCatName + " </option>")
-                    $('#name').prop('selectedIndex', 0);
-                });
-            });
-        })
-    });
     $('#qty, #rate').keyup(function () {
         var rate = parseFloat($('#qty').val()) || 0;
         var box = parseFloat($('#rate').val()) || 0;
 
         $('#amount').val(rate * box);
     });
+    $("#datepick").change(function (e) {
 
-    //$("#datepick").datepicker({
-    //    autoclose: true,
-    //    format: "yyyy-mm-dd",
-    //    immediateUpdates: true,
-    //    todayBtn: true,
-    //    todayHighlight: true
-    //}).datepicker("setDate", "0");
+        $.get("/InvSearch/InvoiceSearch", { date: $("#datepick").val() }, function (data) {
+            $("#Invid").empty();
+            $.each(data, function (index, row) {
 
-
-    $("#additem").click(function (e) {
-        e.preventDefault();
-
-        var ITEMSL = $("#itemname").val();
-        var SIZE = $("#size").val();
-        var COLOR = $("#colorid").val();
-        var QTY = $("#qty").val();
-        var RATE = $("#rate").val();
-        var AMOUNT = $("#amount").val();
-        var detailsTableBody = $("#basic-dt tbody");
-
-        var productItem = '<tr><td>' + ITEMSL + '</td><td>' + SIZE + '</td><td>' + COLOR + '</td><td>' + QTY + '</td><td>' + RATE + '</td><td>' + AMOUNT + '</td><td><a data-itemId="0" href="#" class="btn btn-danger deleteItem">Remove</a></td></tr>';
-        detailsTableBody.append(productItem);
-        clearItem();
-
-        let total = 0;
-        let trCount = $('tr').length;
-        for (i = 1; i < trCount; i++) {
-            let tdtext = $("tr:eq(" + i + ") td:eq(5)").text();
-            total += Number(tdtext);
-        }
-        $("#totalamount").val(total);
-    });
-
-
-    //After Add A New Order In The List, Clear Clean The Form For Add More Order.
-    function clearItem() {
-        $("#itemname").val('');
-        $("#size").val('');
-        $("#colorid").val('');
-        $("#qty").val('');
-        $("#rate").val('');
-        $("#amount").val('');
-    }
-    $(document).on('click', 'a.deleteItem', function (e) {
-        e.preventDefault();
-        var $self = $(this);
-        if ($(this).attr('data-itemId') == "0") {
-            $(this).parents('tr').css("background-color", "#ff6347").fadeOut(800, function () {
-                $(this).remove();
+                $("#Invid").append("<option value='" + row + "'>" + row + "</option>")
             });
-        }
+        });
     });
-    function saveOrder(data) {
-        return $.ajax({
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            type: 'POST',
-            url: "/Purchase/SaveProduct",
-            data: data,
-            success: function (result) {
-                alert(result);
-                location.reload();
+
+    $("#Invid").change(function () {
+        var Invid = $("#Invid option:selected").val();
+        //var htm = ``;
+        //htm = clearItem;
+
+        $.ajax({
+            type: "Get",
+            url: "/InvSearch/GetPurchaseRecord",
+            data: {
+                Invid: Invid
             },
-            error: function () {
-                alert("Error!")
+            success: function (response) {
+                //console.log(response);
+                //BindDataTable(response);
+                var htm = ``;
+                                    $.each(response, function (i, v1) {
+                                        htm += `
+                <tr>
+                <td style="display:none">`+ v1.ID + `</td>
+                <td>`+ v1.ITEMSL + `</td>
+                <td>`+ v1.SIZE + `</td>
+                <td>`+ v1.COLOR + `</td>
+                <td>`+ v1.QTY + `</td>
+                <td>`+ v1.RATE+ `</td>
+                <td>`+ v1.AMOUNT + `</td>
+
+<td><button class='btn btn-info btn-lg btn-edit' type='button'>Edit</button></td>
+                </tr>
+                `;
+                                    });
+
+                //window.location.href = "/InvSearch/Index";
+                $("#basic-dt").html(htm);
+
+                let total = 0;
+                let trCount = $('tr').length;
+                for (i = 0; i < trCount; i++) {
+                    let tdtext = $("tr:eq(" + i + ") td:eq(6)").text();
+                    total += Number(tdtext);
+                }
+                $("#totalamount").val(total);
+
             }
-        });
-    }
-    $("#saveOrder").click(function (e) {
-        e.preventDefault();
+        })
+        var tredit = null;
+        $('body').on('click', '.btn-edit', function () {
+            tredit = $(this).closest('tr');
+            var ID = $(tredit).find('td:eq(0)').text();
+            var ITEMSL = $(tredit).find('td:eq(1)').text();
+            var SIZE = $(tredit).find('td:eq(2)').text();
+            var COLOR = $(tredit).find('td:eq(3)').text();
+            var QTY = $(tredit).find('td:eq(4)').text();
+            var RATE = $(tredit).find('td:eq(5)').text();
+            var AMOUNT = $(tredit).find('td:eq(6)').text();
 
-        var orderArr = [];
-        orderArr.length = 0;
-
-        $.each($("#basic-dt tbody tr"), function () {
-            orderArr.push({
-
-                ITEMSL: $(this).find('td:eq(0)').html(),
-                SIZE: $(this).find('td:eq(1)').html(),
-                COLOR: $(this).find('td:eq(2)').html(),
-                QTY: $(this).find('td:eq(3)').html(),
-                RATE: $(this).find('td:eq(4)').html(),
-                AMOUNT: $(this).find('td:eq(5)').html()
-            });
-        });
-
-
-        var data = JSON.stringify({
-            TRANSDT: $("#datepick").val(),
-            TRANSYY: $("#year").val(),
-            TRANSNO: $("#memoid").val(),
-            STORETO: $("#storeid option:selected").val(),
-            PSID: $("#suppid option:selected").val(),
-            TotalAmount: $("#totalamount").val(),
-            order: orderArr
+            $('input[id="id"]').val(ID);
+            $('input[id="itemname"]').val(ITEMSL);
+            $('input[id="size"]').val(SIZE);
+            $('input[id="colorid"]').val(COLOR);
+            $('input[id="qty"]').val(QTY);
+            $('input[id="rate"]').val(RATE);
+            $('input[id="amount"]').val(AMOUNT);
         });
 
-        $.when(saveOrder(data)).then(function (response) {
-            console.log(response);
-        }).fail(function (err) {
-            console.log(err);
-        });
+
+    })
+
+    $('#btn-updt').click(function () {
+
+        var Invid = $("#Invid option:selected").val();
+        var ID = $('input[id="id"]').val();
+        var ITEMSL = $('input[id="itemname"]').val();
+        var SIZE = $('input[id="size"]').val();
+        var COLOR = $('input[id="colorid"]').val();
+        var QTY = $('input[id="qty"]').val();
+        var RATE = $('input[id="rate"]').val();
+            var AMOUNT = $('input[id="amount"]').val()
+        $.ajax({
+            url: '/InvSearch/EditSave?ID=' + ID + '&ITEMSL=' + ITEMSL + '&SIZE=' + SIZE + '&COLOR=' + COLOR + '&QTY=' + QTY + '&RATE=' + RATE + '&AMOUNT=' + AMOUNT + '&INV=' + Invid,
+            type: 'post',
+
+            success: function () {
+                alert("Record has been updated!!");
+                getdata();
+
+                //tredit = null;
+                //ClearTextBox;
+            }
+        })
+
     });
 
-</script>
+    function getdata() {
+        var Invid = $("#Invid option:selected").val();
+            $.ajax({
+                type: "Get",
+                url: "/InvSearch/GetPurchaseRecord",
+                data: {
+                    Invid: Invid
+                },
+                success: function (response) {
+                    //console.log(response);
+                    //BindDataTable(response);
 
+
+                    var htm = ``;
+                    $.each(response, function (i, v1) {
+                        htm += `
+                <tr>
+                <td style="display:none">`+ v1.ID + `</td>
+                <td>`+ v1.ITEMSL + `</td>
+                <td>`+ v1.SIZE + `</td>
+                <td>`+ v1.COLOR + `</td>
+                <td>`+ v1.QTY + `</td>
+                <td>`+ v1.RATE + `</td>
+                <td>`+ v1.AMOUNT + `</td>
+
+<td><button class='btn btn-info btn-lg btn-edit' type='button'>Edit</button></td>
+                </tr>
+                `;
+                    });
+
+                    //window.location.href = "/InvSearch/Index";
+                    $("#basic-dt").html(htm);
+
+                    let total = 0;
+                    let trCount = $('tr').length;
+                    for (i = 0; i < trCount; i++) {
+                        let tdtext = $("tr:eq(" + i + ") td:eq(6)").text();
+                        total += Number(tdtext);
+                    }
+                    $("#totalamount").val(total);
+
+                }
+            })
+
+
+
+    }
+
+    //function Edit(ID) {
+    //    $.ajax({
+    //        url: '/InvSearch/EditOrder?ID=' + ID,
+    //        type: 'Get',
+    //        contentType: 'application/json;charset = utf-8',
+    //        dataType: 'json',
+    //        success: function (response) {
+    //            $('#id').val(response.ID);
+    //            $('#itemname').val(response.ITEMSL);
+    //            $('#size').val(response.SIZE);
+    //            $('#colorid').val(response.COLOR);
+    //            $('#qty').val(response.QTY);
+    //            $('#rate').val(response.RATE);
+    //            $('#amount').val(response.AMOUNT);
+    //        },
+    //        error: function () {
+    //            alert('Data Not Found!')
+    //        }
+    //    })
+
+    //}
+    //function UpdateEmployee()
+    //var objdata = {
+    //    ID: $('#id').val(),
+    //    ITEMSL: $('#itemname').val(),
+    //    SIZE: $('#size').val(),
+    //    COLOR: $('#colorid').val(),
+    //    QTY: $('#qty').val(),
+    //    RATE: $('#rate').val(),
+    //    AMOUNT: $('#amount').val()
+
+    //}
+    //$.ajax({
+    //    url: '/Purchase/EditSave',
+    //    type: 'post',
+    //    data: objdata,
+    //    //contentType:'application/'
+    //    dataType: 'json',
+    //    success: function () {
+    //        alert('Data Save');
+    //        ClearTextBox;
+
+    //    }
+    //})
+
+
+    //var BindDataTable = function (response) {
+    //    $("#basic-dt tbody").DataTable({
+    //        "aaData": response,
+    //        "aoColumns": [
+    //            { "mData": "ITEMSL" },
+    //            { "mData": "QTY" },
+    //            { "mData": "RATE" },
+    //            { "mData": "AMOUNT" },
+    //        ]
+    //    });
+
+   // }
+</script>

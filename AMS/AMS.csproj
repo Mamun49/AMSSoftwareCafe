@@ -166,13 +166,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InvSearchController.cs" />
+    <Compile Include="Controllers\IssueController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PSController.cs" />
     <Compile Include="Controllers\PurchaseController.cs" />
+    <Compile Include="Controllers\ReceivedController.cs" />
+    <Compile Include="Controllers\SaleController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\SubCategoryController.cs" />
-    <Compile Include="Controllers\TransferController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -276,6 +279,7 @@
     <Content Include="Content\assets\common-assets\img\profile-7.jpg" />
     <Content Include="Content\assets\common-assets\img\profile-8.jpg" />
     <Content Include="Content\assets\common-assets\img\profile-9.jpg" />
+    <Content Include="Content\assets\common-assets\img\Software Cafe jpg.jpeg" />
     <Content Include="Content\assets\common-assets\img\star.png" />
     <Content Include="Content\assets\common-assets\img\terms-img.png" />
     <Content Include="Content\assets\common-assets\img\trophy.png" />
@@ -659,12 +663,16 @@
     <Content Include="Views\PS\Index.cshtml" />
     <Content Include="Views\PS\PSEdit.cshtml" />
     <Content Include="Views\PS\PSDelete.cshtml" />
-    <Content Include="Views\Transfer\Index.cshtml" />
     <Content Include="Views\Purchase\Index.cshtml" />
     <Content Include="Views\Shared\Partial1.cshtml" />
+    <Content Include="Views\Issue\Index.cshtml" />
+    <Content Include="Views\Received\Index.cshtml" />
+    <Content Include="Views\Sale\Index.cshtml" />
+    <Content Include="Views\InvSearch\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Transfer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

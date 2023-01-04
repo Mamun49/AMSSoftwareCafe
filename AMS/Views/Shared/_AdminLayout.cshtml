@@ -9,7 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>Software Café - Agent Maintenance System </title>
-    <link rel="icon" type="image/x-icon" href="~/Content/assets/common-assets/img/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="~/Content/assets/common-assets/img/Software Cafe jpg.jpeg" />
+   
     <!-- Common Styles Starts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="~/Content/assets/common-assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -32,7 +33,7 @@
     @*<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>*@
     <script src="~/Content/assets/js/libs/jquery-3.1.1.min.js"></script>
     @*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">*@
-    
+
     <!-- Page Level Plugin/Style Ends -->
 </head>
 <body>
@@ -60,12 +61,12 @@
         <header class="header navbar navbar-expand-sm">
             <ul class="navbar-item theme-brand flex-row  text-center">
                 <li class="nav-item theme-logo">
-                    <a href="~/Home/Index">
-                        <img src="~/Content/assets/common-assets/img/logo.png" class="navbar-logo" alt="logo">
+                    <a href="~/Home">
+                        <img src="~/Content/assets/common-assets/img/Software Cafe jpg.jpeg" class="navbar-logo" alt="logo">
                     </a>
                 </li>
                 <li class="nav-item theme-text">
-                    <a href="~/Home/Index" class="nav-link"> AMS </a>
+                    <a href="~/Home" class="nav-link"> AMS </a>
                 </li>
             </ul>
             <ul class="navbar-item flex-row ml-md-0 ml-auto">
@@ -699,21 +700,49 @@
                         <a href="#inventpage" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i class="las la-warehouse"></i>
-                                <span>Purchase</span>
+                                <span>Inventory</span>
                             </div>
                             <div>
                                 <i class="las la-angle-right sidemenu-right-icon"></i>
                             </div>
                         </a>
                         <ul class="collapse submenu list-unstyled" id="inventpage" data-parent="#accordionExample">
-                            <li>
-                                <a href="~/Transfer/Index"> Purchase Entry </a>
+                            @*<li>
+                                <a href="#pages-companies1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Purchase <i class="las la-angle-right sidemenu-right-icon"></i> </a>
+                                <ul class="collapse list-unstyled sub-submenu" id="pages-companies1" data-parent="#pages">
+                                    <li>
+                                        <a href="~/Transfer/Index"> Purchase Entry </a>
+                                    </li>
+                                    <li>
+                                        <a href="~/Purchase/Index"> Purchase Modify </a>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
-                                <a href="~/Purchase/Index"> Purchase Modify </a>
-                            </li>
+                                <a href="#pages-companies2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Issue <i class="las la-angle-right sidemenu-right-icon"></i> </a>
+                                <ul class="collapse list-unstyled sub-submenu" id="pages-companies2" data-parent="#pages">
+                                    <li>
+                                        <a href="~/Issue/Index"> Issue Item </a>
+                                    </li>
+                                    <li>
+                                        <a href="~/Issue/Mod"> Issue Item Modify </a>
+                                    </li>
+                                </ul>
+                            </li>*@
+                            
+                            
                             <li>
-                                <a href="~/Home/Maintainence">Recive Item</a>
+                                <a href="~/InvSearch/Index">Invoice Search</a>
+                            </li> <li>
+                                <a href="~/Purchase/Index">Purchase Item</a>
+                            </li><li>
+                                <a href="~/Issue/Index">Issue Item</a>
+                            </li><li>
+                                <a href="~/Received/Index">Received Item</a>
+                            </li><li>
+                                <a href="~/Sale/Index">Sale Item</a>
+                            </li><li>
+                                <a href="~/Home/Maintainence">Reject Item</a>
                             </li>
 
                         </ul>
@@ -743,7 +772,7 @@
                             </li>
                             
                             <li>
-                                <a href="~/PS/Index"> Suppliers Setup </a>
+                                <a href="~/PS/Index"> Agent Setup </a>
                             </li>
                             <li>
                                 <a href="~/Category/Index"> Category Setup </a>

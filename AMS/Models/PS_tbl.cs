@@ -15,6 +15,7 @@ namespace AMS.Models
         public int Mobile { get; set; }
         public string Address { get; set; }
         public string Remarks { get; set; }
+        public string Type { get; set; }
         
     }
 }
