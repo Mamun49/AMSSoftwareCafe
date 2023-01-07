@@ -1,0 +1,151 @@
+﻿@*@model AMS.Models.STK_Trans*@
+
+@{
+    //ViewBag.Title = "GetItemLedger";
+    int sno = 1;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="invoice-container">
+    
+        <div class="invoice-header-section">
+            <div class="invoice-action">
+                <button class="btn btn-primary action-print">Print</button>
+            </div>
+        </div>
+        <div id="ct" class="">
+            
+                <div class="content-section  animated animatedFadeInUp fadeInUp">
+                    <div class="row inv--head-section">
+                        <div class="col-sm-6 col-6 ">
+                            <div >
+                               @*<img src="~/Content/assets/common-assets/img/Software Cafe jpg.jpeg" align="right" width="100" height="100" />*@
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="col-sm-6 col-6">
+                           
+                            <h1 style="text-align:right;"><strong>Item Ledger</strong></h1>
+                        </div>
+                    </div>
+                    <div class="row inv--detail-section">
+                        <div class="col-sm-7 align-self-center">
+                            <p class="inv-to"><strong>Item Details</strong></p>
+                        </div>
+                        <div class="col-sm-5 align-self-center  text-sm-right order-sm-0 order-1">
+                            <p class="inv-detail-title"><strong>Store Details</strong></p>
+                        </div>
+                        <div class="col-sm-7 align-self-center">
+                            <p class="inv-customer-name"><span class="inv-title"><strong>Item Name:</strong> </span> @ViewBag.ItemName</p>
+                            <p class="inv-street-addr"><span class="inv-title"><strong>Item Code :</strong> </span>@ViewBag.ItemCode</p>
+                            
+                        </div>
+                        <div class="col-sm-5 align-self-center  text-sm-right order-2">
+                            <p class="inv-list-number"><span class="inv-title"><strong>Store Name : </strong></span> <span class="inv-number">@ViewBag.StoreName</span></p>
+                            <p class="inv-created-date"><span class="inv-title"><strong>Store Code : </strong></span> <span class="inv-date">@ViewBag.StoreCode</span></p>
+                        </div>
+                    </div>
+                    <div class="row inv--product-table-section">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="">
+                                        <tr>
+                                            <th scope="col">S.No</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Invoice</th>
+                                            <th scope="col">Type</th>
+                                            <th scope="col">Particular</th>
+                                            <th class="text-right" scope="col">Purchase</th>
+                                            <th class="text-right" scope="col">Sale</th>
+                                            <th class="text-right" scope="col">In</th>
+                                            <th class="text-right" scope="col">Out</th>
+                                            <th class="text-right" scope="col">Balance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in ViewBag.Data) { 
+                                        <tr>
+                                            <td>@(sno++) </td>
+                                            <td>@item.TRANSDT</td>
+                                            <td>@item.TRANSNO</td>
+                                            <td>@item.TRANSTP</td>
+                                            <td>@item.TRANSTP</td>
+                                            <td class="text-right">@item.QTY</td>
+                                            <td class="text-right">@item.QTY</td>
+                                            <td class="text-right">@item.QTY</td>
+                                            <td class="text-right">@item.QTY</td>
+                                            <td class="text-right">@item.QTY</td>
+                                           
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-sm-5 col-12 order-sm-0 order-1">
+                            <div class="inv--payment-info">
+                                @*<div class="row">
+                                    <div class="col-sm-12 col-12">
+                                        <h6 class=" inv-title">Bank Information:</h6>
+                                    </div>
+                                    <div class="col-sm-12 col-12">
+                                        <p class=" inv-subtitle"><span>Bank Name:</span> Digital Bank of Commerce</p>
+                                    </div>
+                                    <div class="col-sm-12 col-12">
+                                        <p class=" inv-subtitle"><span>Account Number:</span> 874574584512</p>
+                                    </div>
+                                    <div class="col-sm-12 col-12">
+                                        <p class=" inv-subtitle"><span>Payment Mode:</span> Cheque</p>
+                                    </div>
+                                    <div class="col-sm-12 col-12">
+                                        <p class=" inv-subtitle"><span>Transaction Id:</span> 8HD5248ADSY</p>
+                                    </div>
+                                </div>*@
+                            </div>
+                        </div>
+                        <div class="col-sm-7 col-12 order-sm-1 order-0">
+                            <div class="inv--total-amounts text-sm-right">
+                                <div class="row">
+                                    <div class="col-sm-8 col-7">
+                                        <p class="">Sub Total: </p>
+                                    </div>
+                                    <div class="col-sm-4 col-5">
+                                        <p class="">$51500</p>
+                                    </div>
+                                    <div class="col-sm-8 col-7">
+                                        <p class="">Tax Amount: </p>
+                                    </div>
+                                    <div class="col-sm-4 col-5">
+                                        <p class="">$200</p>
+                                    </div>
+                                    <div class="col-sm-8 col-7">
+                                        <p class=" discount-rate">Discount : <span class="discount-percentage">5%</span> </p>
+                                    </div>
+                                    <div class="col-sm-4 col-5">
+                                        <p class="">$500</p>
+                                    </div>
+                                    <div class="col-sm-8 col-7 grand-total-title">
+                                        <h4 class="">Grand Total : </h4>
+                                    </div>
+                                    <div class="col-sm-4 col-5 grand-total-amount">
+                                        <h4 class="">$51200</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-contact">
+                        <div class="row">
+                            <div class="col-sm-12 col-12">
+                                <p class="">Email: info@mail.com &nbsp;|&nbsp; Contact: +1 5475-8244 &nbsp;|&nbsp; Website: www.website.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+           
+                

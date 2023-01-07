@@ -169,6 +169,7 @@
     <Compile Include="Controllers\InvSearchController.cs" />
     <Compile Include="Controllers\IssueController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
+    <Compile Include="Controllers\LedgerController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PSController.cs" />
     <Compile Include="Controllers\PurchaseController.cs" />
@@ -176,12 +177,14 @@
     <Compile Include="Controllers\SaleController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\SubCategoryController.cs" />
+    <Compile Include="Controllers\TransferController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AMSModel.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\ledgerModel.cs" />
     <Compile Include="Models\PS_tbl.cs" />
     <Compile Include="Models\STK_Item.cs" />
     <Compile Include="Models\STK_Trans.cs" />
@@ -669,10 +672,13 @@
     <Content Include="Views\Received\Index.cshtml" />
     <Content Include="Views\Sale\Index.cshtml" />
     <Content Include="Views\InvSearch\Index.cshtml" />
+    <Content Include="Views\Transfer\Index.cshtml" />
+    <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\Ledger\Index.cshtml" />
+    <Content Include="Views\Ledger\GetItemLedger.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Transfer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
