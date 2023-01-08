@@ -83,7 +83,7 @@
 
                                                             <label for="validationCustom01">Item Name</label>
                                                             @*<input type="text" class="form-control" id="itemname">*@
-                                                            @Html.DropDownListFor(model => model.ItemID, new SelectList(ViewBag.ITMList, "Value", "Text"), "Select Item", new { @class = "form-control" })
+                                                            @Html.DropDownListFor(model => model.ItemID, new SelectList(ViewBag.ITMList, "Value", "Text"), "Select Item", new { @class = "form-control" , @id="itemid"})
                                                             @Html.ValidationMessageFor(model => model.ItemID, "", new { @class = "text-danger" })
 
                                                         </div>
@@ -93,6 +93,25 @@
                                                             @*<input type="text" class="form-control" id="storename">*@
                                                             @Html.DropDownListFor(model => model.storeid, new SelectList(ViewBag.StoreList, "Value", "Text"), "Select Store", new { @class = "form-control" })
                                                             @Html.ValidationMessageFor(model => model.storeid, "", new { @class = "text-danger" })
+
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="col-md-5 mb-5">
+
+                                                            <label for="validationCustom01">Size</label>
+                                                            @*<input type="text" class="form-control" id="itemname">*@
+                                                            @Html.DropDownListFor(model => model.Size, new SelectList(""), "Select Size", new { @class = "form-control" , @id="sizeid"})
+                                                            @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                        <div class="col-md-5 mb-5">
+
+                                                            <label for="validationCustom02">Color</label>
+                                                            @*<input type="text" class="form-control" id="storename">*@
+                                                            @Html.DropDownListFor(model => model.Color, new SelectList(""), "Select Color", new { @class = "form-control", @id="colorid" })
+                                                            @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
 
                                                         </div>
 
@@ -146,4 +165,62 @@
                 $(this).data('DateTimePicker').hide();
             });
         });
+    $(document).ready(function () {
+        $("#itemid").change(function () {
+            var itid = $(this).val();
+            //debugger
+            $.get("/Ledger/GetSizeList", { Itemid: $("#itemid").val() }, function (data) {
+                $("#sizeid").empty();
+
+                $.each(data, function (index, row) {
+                    /*var row = "<tr><td>" + row.SubCatName + "</td></tr>";*/
+                    $("#sizeid").append("<option value= '" + row + "'>" + row + " </option>")
+                    $('#name').prop('selectedIndex', 0);
+                });
+            });
+            $.get("/Ledger/GetColorList", { Itemid: $("#itemid").val() }, function (data) {
+                $("#colorid").empty();
+
+                $.each(data, function (index, row) {
+                    /*var row = "<tr><td>" + row.SubCatName + "</td></tr>";*/
+                    $("#colorid").append("<option value= '" + row + "'>" + row + " </option>")
+                    $('#name').prop('selectedIndex', 0);
+                });
+            });
+            //$.ajax({
+            //    type: "Post",
+            //    url: "/Ledger/GetSCList?Itemid=" + itid,
+            //    contentType: "html",
+            //    success: function (response) {
+            //        //debugger
+            //        $("#CId").empty();
+            //        $("#CId").append('<option value="'
+            //            + '">'
+            //            + "--Select City--" + '</option>');
+            //        $.each(response, function (i, memo) {
+            //            $("#CId").append('<option value="'
+            //                + memo.Value + '">'
+            //                + memo.Text + '</option>');
+            //        });
+            //    }
+            //})
+            //$.ajax({
+            //    type: "Post",
+            //    url: "/Ledger/GetSCList?Itemid=" + itid,
+            //    contentType: "html",
+            //    success: function (response) {
+            //        //debugger
+            //        $("#CId").empty();
+            //        $("#CId").append('<option value="'
+            //            + '">'
+            //            + "--Select City--" + '</option>');
+            //        $.each(response, function (i, memo) {
+            //            $("#CId").append('<option value="'
+            //                + memo.Value + '">'
+            //                + memo.Text + '</option>');
+            //        });
+            //    }
+            //})
+        })
+    });
 </script>

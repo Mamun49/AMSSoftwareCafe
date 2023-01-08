@@ -41,8 +41,22 @@ namespace AMS.Controllers
 
             return StrList;
         }
-        
 
+        
+        public ActionResult GetSizeList(int Itemid)
+        {
+            //var Itm = Itemid.ToString();
+            //List<STK_Trans> sizedd = db.STK_Trans.Where(x => x.ITEMID == Itemid).ToList();
+           var sizedd = (from n in db.STK_Trans where n.ITEMID == Itemid select n.SIZE).Distinct();
+            return Json(sizedd, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetColorList(int Itemid)
+        {
+            //var Itm = Itemid.ToString();
+            List<STK_Trans> sizedd = db.STK_Trans.Where(x => x.ITEMID == Itemid).ToList();
+            var colordd = (from n in db.STK_Trans where n.ITEMID == Itemid select n.COLOR).Distinct();
+            return Json(colordd, JsonRequestBehavior.AllowGet);
+        }
         public ActionResult GetItemLedger(ledgerModel model)
         {
             var stid = model.storeid.ToString();
@@ -62,6 +76,9 @@ namespace AMS.Controllers
             var dateto = Convert.ToDateTime(model.dateto);
             var data = from u in db.STK_Trans
                         where u.ITEMID == model.ItemID &&
+                        u.SIZE == model.Size &&
+                        u.COLOR == model.Color &&
+                        u.TRANSTP != "Issue" &&
                         u.STOREFR == stid &&
                        (u.TRANSDT >= datefrom &&
                         u.TRANSDT <= dateto) select u;

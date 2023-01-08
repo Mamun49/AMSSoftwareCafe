@@ -5,6 +5,7 @@
     List<SelectListItem> Storelist = ViewBag.Storelist;
     List<SelectListItem> Supplist = ViewBag.SuppList;
     List<SelectListItem> Catlist = ViewBag.CatList;
+    List<SelectListItem> Itemlist = ViewBag.ItemList;
 }
 
 <!DOCTYPE html>
@@ -144,7 +145,14 @@
                                                     </div>
                                                     <div class="col-md-6 mb-6">
                                                         <label for="validationCustom02">Item Name</label>
-                                                        <input type="email" class="form-control" id="itemname">
+                                                        @*<input type="email" class="form-control" id="itemname">*@
+                                                        <select class="form-control" id="itemname">
+                                                            @for (int i = 0; i < Itemlist.Count; i++)
+                                                            {
+
+                                                                <option value="@Itemlist[i].Value">@Itemlist[i].Text</option>
+                                                            }
+                                                        </select>
 
                                                     </div>
 
@@ -276,7 +284,7 @@
 
 
 
-                                        <th style="width:30%"> Item Name</th>
+                                        <th style="width:30%"> Item ID</th>
                                         <th style="width:10%"> Size</th>
                                         <th style="width:20%"> Color</th>
                                         <th style="width:10%"> QTY</th>
@@ -335,7 +343,7 @@
     $("#additem").click(function (e) {
         e.preventDefault();
 
-        var ITEMSL = $("#itemname").val();
+        var ITEMID = $("#itemname option:selected").val();
         var SIZE = $("#size").val();
         var COLOR = $("#colorid").val();
         var QTY = $("#qty").val();
@@ -343,7 +351,7 @@
         var AMOUNT = $("#amount").val();
         var detailsTableBody = $("#basic-dt tbody");
 
-        var productItem = '<tr><td>' + ITEMSL + '</td><td>' + SIZE + '</td><td>' + COLOR + '</td><td>' + QTY + '</td><td>' + RATE + '</td><td>' + AMOUNT + '</td><td><a data-itemId="0" href="#" class="btn btn-danger deleteItem">Remove</a></td></tr>';
+        var productItem = '<tr><td>' + ITEMID + '</td><td>' + SIZE + '</td><td>' + COLOR + '</td><td>' + QTY + '</td><td>' + RATE + '</td><td>' + AMOUNT + '</td><td><a data-itemId="0" href="#" class="btn btn-danger deleteItem">Remove</a></td></tr>';
         detailsTableBody.append(productItem);
         clearItem();
 
@@ -387,7 +395,7 @@
                 location.reload();
             },
             error: function () {
-                alert("Error!")
+                alert("Error! Insert Date")
             }
         });
     }
@@ -400,7 +408,7 @@
         $.each($("#basic-dt tbody tr"), function () {
             orderArr.push({
 
-                ITEMSL: $(this).find('td:eq(0)').html(),
+                ITEMID: $(this).find('td:eq(0)').html(),
                 SIZE: $(this).find('td:eq(1)').html(),
                 COLOR: $(this).find('td:eq(2)').html(),
                 QTY: $(this).find('td:eq(3)').html(),

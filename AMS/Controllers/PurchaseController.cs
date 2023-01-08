@@ -20,6 +20,7 @@ namespace AMS.Controllers
             var num = Random.Next(0, 10000);
             var memo = "Inv" + "-" + Convert.ToString(num) + "/PUR-" + DateTime.Now.Year;
             ViewBag.Memo = memo;
+
             var StoreList = new List<SelectListItem>();
             var storeList = GetStoreList();
             foreach (var item in storeList)
@@ -27,6 +28,15 @@ namespace AMS.Controllers
                 StoreList.Add(new SelectListItem { Text = item.StoreID.ToString() + " | " + item.StoreName, Value = item.StoreID.ToString() });
             }
             ViewBag.StoreList = StoreList;
+
+            var ItemList = new List<SelectListItem>();
+            var itemList = GetItemList();
+            foreach (var item in itemList)
+            {
+                ItemList.Add(new SelectListItem { Text = +item.ID+" | "+item.ItemCode.ToString() + " | " + item.ItemName, Value = item.ID.ToString() });
+            }
+            ViewBag.ItemList = ItemList;
+
             var SuppList = new List<SelectListItem>();
             var suppList = GetSuppList();
             foreach (var item in suppList)
@@ -48,6 +58,12 @@ namespace AMS.Controllers
             List<Store_tbl> StoreList = db.Store_tbls.ToList();
 
             return StoreList;
+        }
+        private List<STK_Item> GetItemList()
+        {
+            List<STK_Item> ItemList = db.STK_Items.ToList();
+
+            return ItemList;
         }
         private List<PS_tbl> GetSuppList()
         {
@@ -74,7 +90,7 @@ namespace AMS.Controllers
             foreach (var item in order)
             {
                 STK_Trans obj = new STK_Trans();
-
+                var Itemname = (from n in db.STK_Items where n.ID == item.ITEMID select n.ItemName).FirstOrDefault(); 
                 obj.TRANSDT = Convert.ToDateTime(TRANSDT);
                 obj.TRANSYY = TRANSYY;
                 obj.TRANSNO = TRANSNO;
@@ -83,7 +99,8 @@ namespace AMS.Controllers
                 obj.TRANSTP = "Purchase";
                 obj.InsBy = "admin";
                 obj.InsDate = DateTime.Now;
-                obj.ITEMSL = item.ITEMSL;
+                obj.ITEMSL = Itemname;
+                obj.ITEMID = item.ITEMID;
                 obj.SIZE = item.SIZE;
                 obj.COLOR = item.COLOR;
                 obj.QTY = item.QTY;

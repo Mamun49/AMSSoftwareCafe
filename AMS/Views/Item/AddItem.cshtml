@@ -110,13 +110,13 @@
                                                         <div class="form-row">
                                                             <div class="col-md-5 mb-5">
                                                                 <label for="validationCustom01">Unit</label>
-                                                                @Html.EditorFor(model => model.Unit, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.EditorFor(model => model.Unit, new { htmlAttributes = new { @class = "form-control", @placeholder = "0" } })
                                                                 @Html.ValidationMessageFor(model => model.Unit, "", new { @class = "text-danger" })
 
                                                             </div>
                                                             <div class="col-md-5 mb-5">
                                                                 <label for="validationCustom02">Min Stock</label>
-                                                                @Html.EditorFor(model => model.MinStock, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.EditorFor(model => model.MinStock, new { htmlAttributes = new { @class = "form-control", @placeholder = "0" } })
                                                                 @Html.ValidationMessageFor(model => model.MinStock, "", new { @class = "text-danger" })
 
                                                             </div>
@@ -125,13 +125,13 @@
                                                         <div class="form-row">
                                                             <div class="col-md-5 mb-5">
                                                                 <label for="validationCustom01">Discount</label>
-                                                                @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control", @placeholder="0"} })
                                                                 @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
 
                                                             </div>
                                                             <div class="col-md-5 mb-5">
                                                                 <label for="validationCustom02">DiscountTp</label>
-                                                                @Html.EditorFor(model => model.DiscountTp, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.EditorFor(model => model.DiscountTp, new { htmlAttributes = new { @class = "form-control" , @placeholder="0" } })
                                                                 @Html.ValidationMessageFor(model => model.DiscountTp, "", new { @class = "text-danger" })
 
 
