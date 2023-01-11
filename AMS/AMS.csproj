@@ -171,11 +171,13 @@
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\LedgerController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PartySearchController.cs" />
     <Compile Include="Controllers\PSController.cs" />
     <Compile Include="Controllers\PurchaseController.cs" />
     <Compile Include="Controllers\ReceivedController.cs" />
     <Compile Include="Controllers\SaleController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
+    <Compile Include="Controllers\StoreSearchController.cs" />
     <Compile Include="Controllers\SubCategoryController.cs" />
     <Compile Include="Controllers\TransferController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -676,6 +678,10 @@
     <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\Ledger\Index.cshtml" />
     <Content Include="Views\Ledger\GetItemLedger.cshtml" />
+    <Content Include="Views\StoreSearch\Index.cshtml" />
+    <Content Include="Views\StoreSearch\GetStoreLedger.cshtml" />
+    <Content Include="Views\PartySearch\Index.cshtml" />
+    <Content Include="Views\PartySearch\GetPartyLedger.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

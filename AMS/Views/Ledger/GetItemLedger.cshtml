@@ -38,11 +38,13 @@
                         <div class="col-sm-7 align-self-center">
                             <p class="inv-customer-name"><span class="inv-title"><strong>Item Name:</strong> </span> @ViewBag.ItemName</p>
                             <p class="inv-street-addr"><span class="inv-title"><strong>Item Code :</strong> </span>@ViewBag.ItemCode</p>
-                            
+                            <p class="inv-email-address"><span class="inv-title"><strong>Size:</strong></span> @ViewBag.Size&nbsp;|&nbsp;<span class="inv-title"><strong>Color:</strong></span> @ViewBag.Color</p>
+
                         </div>
                         <div class="col-sm-5 align-self-center  text-sm-right order-2">
                             <p class="inv-list-number"><span class="inv-title"><strong>Store Name : </strong></span> <span class="inv-number">@ViewBag.StoreName</span></p>
                             <p class="inv-created-date"><span class="inv-title"><strong>Store Code : </strong></span> <span class="inv-date">@ViewBag.StoreCode</span></p>
+                            <p class="inv-created-date"><span class="inv-title"><strong>Date : </strong></span> <span class="inv-date">@ViewBag.Date</span></p>
                         </div>
                     </div>
                     <div class="row inv--product-table-section">
@@ -55,8 +57,7 @@
                                             <th scope="col">Date</th>
                                             <th scope="col">Invoice</th>
                                             <th scope="col">Type</th>
-                                            <th scope="col">Size</th>
-                                            <th scope="col">Color</th>
+                                            
                                             <th class="text-right" scope="col">Purchase</th>
                                             <th class="text-right" scope="col">Sale</th>
                                             <th class="text-right" scope="col">In</th>
@@ -72,8 +73,8 @@
                                             <td>@item.TRANSDT</td>
                                             <td>@item.TRANSNO</td>
                                             <td>@item.TRANSTP</td>
-                                            <td>@item.SIZE</td>
-                                            <td>@item.COLOR</td>
+                                            
+                                            
                                             @if (item.TRANSTP == "Purchase")
                                             {
                                                 <td class="text-right">@item.QTY</td>

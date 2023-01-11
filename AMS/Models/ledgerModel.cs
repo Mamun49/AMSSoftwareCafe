@@ -13,5 +13,6 @@ namespace AMS.Models
         public DateTime datefrom { get; set; }
         public DateTime dateto { get; set; }
         public int storeid { get; set; }
+        public int PSid { get; set; }
     }
 }

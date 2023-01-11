@@ -70,18 +70,50 @@ namespace AMS.Controllers
             ViewBag.ItemName = Itemname;
             var Itemcode = itemlist.ItemCode;
             ViewBag.ItemCode = Itemcode;
+            ViewBag.Size = model.Size;
+            ViewBag.Color = model.Color;
+            var dateTime = DateTime.Now.ToString("M/d/yyyy");
 
+            ViewBag.Date = dateTime;
             //var stto = model.ItemID.ToString();
             var datefrom = Convert.ToDateTime(model.datefrom);
             var dateto = Convert.ToDateTime(model.dateto);
-            var data = from u in db.STK_Trans
-                        where u.ITEMID == model.ItemID &&
-                        u.SIZE == model.Size &&
-                        u.COLOR == model.Color &&
-                        u.TRANSTP != "Issue" &&
-                        u.STOREFR == stid &&
-                       (u.TRANSDT >= datefrom &&
-                        u.TRANSDT <= dateto) select u;
+            var data = (from u in db.STK_Trans
+                       where u.ITEMID == model.ItemID &&
+                      u.SIZE == model.Size &&
+                      u.COLOR == model.Color &&
+                      u.TRANSTP == "Purchase" &&
+                      u.STORETO == stid &&
+                     (u.TRANSDT >= datefrom &&
+                      u.TRANSDT <= dateto)
+                       select u)
+                       .Union(from u in db.STK_Trans
+                              where u.ITEMID == model.ItemID &&
+                              u.SIZE == model.Size &&
+                              u.COLOR == model.Color &&
+                              u.TRANSTP == "Recevied" &&
+                              u.STORETO == stid &&
+                             (u.TRANSDT >= datefrom &&
+                              u.TRANSDT <= dateto)
+                              select u)
+                        .Union(from u in db.STK_Trans
+                               where u.ITEMID == model.ItemID &&
+                               u.SIZE == model.Size &&
+                               u.COLOR == model.Color &&
+                               u.TRANSTP == "Transfer" &&
+                               u.STOREFR == stid &&
+                              (u.TRANSDT >= datefrom &&
+                               u.TRANSDT <= dateto)
+                               select u)
+                         .Union(from u in db.STK_Trans
+                                where u.ITEMID == model.ItemID &&
+                                u.SIZE == model.Size &&
+                                u.COLOR == model.Color &&
+                                u.TRANSTP == "Sale" &&
+                                u.STOREFR == stid &&
+                               (u.TRANSDT >= datefrom &&
+                                u.TRANSDT <= dateto)
+                                select u).ToList();
             ViewBag.Data = data;
             return View();
         }
