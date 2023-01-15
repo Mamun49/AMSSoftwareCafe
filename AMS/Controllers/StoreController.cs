@@ -37,7 +37,7 @@ namespace AMS.Controllers
         public ActionResult AddStore(Store_tbl model)
         {
             model.InsTime = DateTime.Now;
-            model.InsBy = "Admin";
+            model.InsBy = Convert.ToString(Session["UserMail"]); ;
             model.UpdateTime = null;
             model.UpdateBy = null;
 
@@ -62,7 +62,7 @@ namespace AMS.Controllers
                 mod.AgentID = model.AgentID;
                 mod.Remarks = model.Remarks;
                 
-                mod.UpdateBy = "Agent";
+                mod.UpdateBy = Convert.ToString(Session["UserMail"]); ;
                 mod.UpdateTime = DateTime.Now;
 
                 db.SaveChanges();

@@ -329,7 +329,7 @@
                         <div class="nav-drop is-account-dropdown">
                             <div class="inner">
                                 <div class="nav-drop-header">
-                                    <span class="text-primary font-15">Welcome Admin !</span>
+                                    <span class="text-primary font-15">Welcome @Session["UserName"] !</span>
                                 </div>
                                 <div class="nav-drop-body account-items pb-0">
                                     <a id="profile-link" class="account-item" href="~/Home/Maintainence">
@@ -340,8 +340,8 @@
                                                 </div>
                                             </div>
                                             <div class="media-content ml-3">
-                                                <h6 class="font-13 mb-0 strong">Sara</h6>
-                                                <small>Britannia</small>
+                                                <h6 class="font-13 mb-0 strong">@Session["UserName"]</h6>
+                                                <small>@Session["UserMail"]</small>
                                             </div>
                                             <div class="media-right">
                                                 <i data-feather="check"></i>
@@ -814,6 +814,9 @@
                             </li>
                             <li>
                                 <a href="~/SubCategory/Index">Sub  Category Setup </a>
+                            </li>
+                            <li>
+                                <a href="~/RoleManager/Index">Role Management </a>
                             </li>
 
 

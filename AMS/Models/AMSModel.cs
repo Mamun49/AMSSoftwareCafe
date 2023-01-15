@@ -20,6 +20,7 @@ namespace AMS.Models
         public virtual DbSet<PS_tbl> PS_Tbls { get; set; }
         public virtual DbSet<STK_Trans>STK_Trans { get; set; }
         public virtual DbSet<STK_TRANSMST> STK_TRANSMSTs { get; set; }
+        public virtual DbSet<UserRole> UserRoles { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

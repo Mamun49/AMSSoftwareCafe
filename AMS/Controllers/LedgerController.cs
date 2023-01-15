@@ -7,10 +7,12 @@ using System.Web.Mvc;
 
 namespace AMS.Controllers
 {
+    [Authorize]
     public class LedgerController : Controller
     {
         // GET: Ledger
         AMSModel db = new AMSModel();
+        //[Authorize(Roles ="Admin")]
         public ActionResult Index()
         {
             var ItemList = new List<SelectListItem>();

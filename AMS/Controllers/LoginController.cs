@@ -41,7 +41,7 @@ namespace AMS.Controllers
 
                 Session["UserMail"] = model.Email.ToString();
                 Session["UserName"] = checkLogin.Name.ToString();
-                //Session["Emp_ID"] = Convert.ToInt64(checkLogin.Emp_ID);
+                //Session["Emp_ID"] = Convert.ToInt64(checkLogin.ID);
                 ModelState.Clear();
                 return RedirectToAction("Index", "Home");
             }

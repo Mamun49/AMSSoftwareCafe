@@ -40,7 +40,7 @@ namespace AMS.Models
         [StringLength(50)]
         public string CretBy { get; set; }
 
-        [StringLength(10)]
+        [StringLength(50)]
         public string UpdBy { get; set; }
        
     }

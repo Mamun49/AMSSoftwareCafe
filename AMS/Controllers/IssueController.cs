@@ -91,7 +91,7 @@ namespace AMS.Controllers
                 obj.STORETO = STORETO;
                 obj.STOREFR = STOREFR;
                 obj.TRANSTP = "Issue";
-                obj.InsBy = "admin";
+                obj.InsBy = Convert.ToString(Session["UserMail"]); ;
                 obj.InsDate = DateTime.Now;
                 obj.ITEMSL = Itemname;
                 obj.ITEMID = item.ITEMID;
@@ -107,7 +107,7 @@ namespace AMS.Controllers
 
 
             STK_TRANSMST add = new STK_TRANSMST();
-            add.InsBy = "admin";
+            add.InsBy = Convert.ToString(Session["UserMail"]); ;
             add.InsDate = DateTime.Now;
             add.StoreFrom = STOREFR;
             add.StoreTo = STORETO;

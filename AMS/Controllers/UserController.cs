@@ -46,7 +46,7 @@ namespace AMS.Controllers
             else
             {
                 model.CretDate = DateTime.Now;
-                model.CretBy="SuperAdmin";
+                model.CretBy = Convert.ToString(Session["UserMail"]); ;
                 model.UpdDate = null;
                 model.UpdBy = null;
 
@@ -78,7 +78,7 @@ namespace AMS.Controllers
                 mod.Phone = model.Phone;
                 mod.Pass = model.Pass;
                 mod.Role = model.Role;
-                mod.UpdBy = "seeecc";
+                mod.UpdBy = Convert.ToString(Session["UserMail"]);
                 mod.UpdDate = DateTime.Now;
 
 

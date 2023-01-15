@@ -41,7 +41,7 @@ namespace AMS.Controllers
         public ActionResult AddItem(STK_Item model)
         {
             model.InsertTime = DateTime.Now;
-            model.InsertBy = "1";
+            model.InsertBy = Convert.ToString(Session["UserMail"]); ;
             model.UpdateTime = null;
             model.UpdateBy = null;
 
@@ -82,7 +82,7 @@ namespace AMS.Controllers
                 mod.MinStock = model.MinStock;
                 mod.Remarks = model.Remarks;
                 mod.Unit = model.Unit;
-                mod.UpdateBy = "Dev";
+                mod.UpdateBy = Convert.ToString(Session["UserMail"]);;
                 mod.UpdateTime = DateTime.Now;
                 
                 db.SaveChanges();

@@ -175,6 +175,7 @@
     <Compile Include="Controllers\PSController.cs" />
     <Compile Include="Controllers\PurchaseController.cs" />
     <Compile Include="Controllers\ReceivedController.cs" />
+    <Compile Include="Controllers\RoleManagerController.cs" />
     <Compile Include="Controllers\SaleController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\StoreSearchController.cs" />
@@ -194,7 +195,9 @@
     <Compile Include="Models\Store_tbl.cs" />
     <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Models\user.cs" />
+    <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\assets\common-assets\bootstrap\css\bootstrap.min.css" />
@@ -682,6 +685,7 @@
     <Content Include="Views\StoreSearch\GetStoreLedger.cshtml" />
     <Content Include="Views\PartySearch\Index.cshtml" />
     <Content Include="Views\PartySearch\GetPartyLedger.cshtml" />
+    <Content Include="Views\RoleManager\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
