@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace AMS.Controllers
 {
+    [Authorize]
     public class StoreSearchController : Controller
     {
         AMSModel db = new AMSModel();

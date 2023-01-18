@@ -73,9 +73,16 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-5">
-
-            @Html.DropDownListFor(model => model.Role, new SelectList(ViewBag.Role, "Value", "Text"), "Select Role", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+            @if (ViewBag.RoleName == "SuperAdmin")
+            {
+                @Html.DropDownListFor(model => model.Role, new SelectList(ViewBag.Role, "Value", "Text"), "Select Role", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+            }
+            else if (ViewBag.RoleName == "Admin")
+            {
+                @Html.DropDownListFor(model => model.Role, new SelectList(ViewBag.adminRole, "Value", "Text"), "Select Role", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+            }
         </div>
     </div>
 

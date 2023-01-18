@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace AMS.Controllers
 {
+    [Authorize(Roles = "SuperAdmin, Admin")]
     public class PSController : Controller
     {
         AMSModel db = new AMSModel();

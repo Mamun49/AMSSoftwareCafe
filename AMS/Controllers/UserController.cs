@@ -11,24 +11,26 @@ namespace AMS.Controllers
     {
         // GET: User
         AMSModel db = new AMSModel();
+        [Authorize(Roles ="SuperAdmin, Admin")]
         public ActionResult Index()
         {
             var Userlist = db.users.ToList();
             return View(Userlist);
         }
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public ActionResult AddUser()
         {
-            var mode = new List<SelectListItem>();
-            {
-                mode.Add(new SelectListItem { Text = "Admin", Value = "Admin" });
-                mode.Add(new SelectListItem { Text = "Agent", Value = "Agent" });
-                mode.Add(new SelectListItem { Text = "Suppliers", Value = "Suppliers" });
+            //var mode = new List<SelectListItem>();
+            //{
+            //    mode.Add(new SelectListItem { Text = "Admin", Value = "Admin" });
+            //    mode.Add(new SelectListItem { Text = "Agent", Value = "Agent" });
+            //    mode.Add(new SelectListItem { Text = "Suppliers", Value = "Suppliers" });
                 
-            };
-            ViewBag.Role = mode;
+            //};
+            //ViewBag.Role = mode;
             return View();
         }
-        
+        [Authorize(Roles = "SuperAdmin, Admin")]
         [HttpPost]
         public ActionResult AddUser(user model)
         {
@@ -45,6 +47,7 @@ namespace AMS.Controllers
 
             else
             {
+                model.Role = "User";
                 model.CretDate = DateTime.Now;
                 model.CretBy = Convert.ToString(Session["UserMail"]); ;
                 model.UpdDate = null;
@@ -63,10 +66,12 @@ namespace AMS.Controllers
                 return RedirectToAction("Index");
             }
         }
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public ActionResult UserEdt(int ID)
         {
             return View(db.users.Where(x => x.ID.Equals(ID)).FirstOrDefault());
         }
+        [Authorize(Roles = "SuperAdmin, Admin")]
         [HttpPost]
         public ActionResult UserEdt(user model, int ID)
         {
@@ -92,11 +97,12 @@ namespace AMS.Controllers
                 return View();
             }
         }
-        
+        [Authorize(Roles = "SuperAdmin, Admin")]
         public ActionResult UserDlt(int ID)
         {
             return View(db.users.Where(x => x.ID.Equals(ID)).FirstOrDefault());
         }
+        [Authorize(Roles = "SuperAdmin, Admin")]
         [HttpPost]
         public ActionResult UserDlt(user model, int ID)
         {

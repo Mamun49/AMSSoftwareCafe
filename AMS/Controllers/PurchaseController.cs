@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace AMS.Controllers
 {
+    [Authorize]
     public class PurchaseController : Controller
     {
         AMSModel db = new AMSModel();
