@@ -1,0 +1,45 @@
+﻿
+@{
+    //ViewBag.Title = "SessionOut";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .signout-btn {
+            background-color: red;
+            font-size: 20px;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 20px auto;
+            border-radius: 10px;
+        }
+
+        .warning {
+            color: red;
+            text-align: center;
+            margin: 10px auto;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="warning">Warning: Your Session is already expired. Please Logout and Re-Login for your further use. Thanks</div>
+    <br />
+    <div style="display: flex; align-items: center;">
+    <a href="~/Login/Logout"class="signout-btn" style="align">Sign Out
+    </a>
+        </div>
+</body>
+</html>
+

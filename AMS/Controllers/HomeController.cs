@@ -31,11 +31,25 @@ namespace AMS.Controllers
         }
         public ActionResult Maintainence()
         {
+            if (Session["UserMail"] != null)
+            {
+
+
+                return View();
+            }
+            else
+            {
+
+                return RedirectToAction("SessionOut", "Home");
+            }
+        }
+
+        public ActionResult Test()
+        {
             
 
             return View();
-        }
-        public ActionResult Test()
+        }public ActionResult SessionOut()
         {
             
 

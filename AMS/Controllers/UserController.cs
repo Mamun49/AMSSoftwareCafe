@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace AMS.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         // GET: User
@@ -20,51 +21,73 @@ namespace AMS.Controllers
         [Authorize(Roles = "SuperAdmin, Admin")]
         public ActionResult AddUser()
         {
+            if (Session["UserMail"] != null)
+            {
+
+
+                return View();
+            }
+            else
+            {
+
+                return RedirectToAction("SessionOut", "Home");
+            }
             //var mode = new List<SelectListItem>();
             //{
             //    mode.Add(new SelectListItem { Text = "Admin", Value = "Admin" });
             //    mode.Add(new SelectListItem { Text = "Agent", Value = "Agent" });
             //    mode.Add(new SelectListItem { Text = "Suppliers", Value = "Suppliers" });
-                
+
             //};
             //ViewBag.Role = mode;
-            return View();
+           
         }
         [Authorize(Roles = "SuperAdmin, Admin")]
         [HttpPost]
         public ActionResult AddUser(user model)
         {
-
-            var search_user = (from n in db.users where n.Email == model.Email select n).FirstOrDefault();
-
-
-            if (search_user != null)
+            if (Session["UserMail"] != null)
             {
-                ViewBag.Notification = "This User Name Already Exist!!";
-                ModelState.Clear();
-                return View();
-            }
+                var search_user = (from n in db.users where n.Email == model.Email select n).FirstOrDefault();
 
+
+                if (search_user != null)
+                {
+                    ViewBag.Notification = "This User Name Already Exist!!";
+                    ModelState.Clear();
+                    return View();
+                }
+
+                else
+                {
+                    model.Role = "User";
+                    model.CretDate = DateTime.Now;
+                    model.CretBy = Convert.ToString(Session["UserMail"]); ;
+                    model.UpdDate = null;
+                    model.UpdBy = null;
+
+                    model.Name = model.Name.ToUpper();
+                    model.Email = model.Email.ToLower();
+
+
+                    db.users.Add(model);
+                    db.SaveChanges();
+
+
+                    ModelState.Clear();
+
+                    return RedirectToAction("Index");
+                }
+
+
+            }
             else
             {
-                model.Role = "User";
-                model.CretDate = DateTime.Now;
-                model.CretBy = Convert.ToString(Session["UserMail"]); ;
-                model.UpdDate = null;
-                model.UpdBy = null;
 
-                model.Name = model.Name.ToUpper();
-                model.Email = model.Email.ToLower();
-
-
-                db.users.Add(model);
-                db.SaveChanges();
-
-
-                ModelState.Clear();
-
-                return RedirectToAction("Index");
+                return RedirectToAction("SessionOut", "Home");
             }
+
+            
         }
         [Authorize(Roles = "SuperAdmin, Admin")]
         public ActionResult UserEdt(int ID)
@@ -75,27 +98,38 @@ namespace AMS.Controllers
         [HttpPost]
         public ActionResult UserEdt(user model, int ID)
         {
-            try
+            if (Session["UserMail"] != null)
             {
-                var mod = (from n in db.users where n.ID == ID select n).FirstOrDefault();
-                mod.Name = model.Name;
-                mod.Email = model.Email;
-                mod.Phone = model.Phone;
-                mod.Pass = model.Pass;
-                mod.Role = model.Role;
-                mod.UpdBy = Convert.ToString(Session["UserMail"]);
-                mod.UpdDate = DateTime.Now;
+
+                try
+                {
+                    var mod = (from n in db.users where n.ID == ID select n).FirstOrDefault();
+                    mod.Name = model.Name;
+                    mod.Email = model.Email;
+                    mod.Phone = model.Phone;
+                    mod.Pass = model.Pass;
+                    mod.Role = model.Role;
+                    mod.UpdBy = Convert.ToString(Session["UserMail"]);
+                    mod.UpdDate = DateTime.Now;
 
 
-                db.SaveChanges();
+                    db.SaveChanges();
 
-                return RedirectToAction("Index", "User");
+                    return RedirectToAction("Index", "User");
+
+                }
+                catch
+                {
+                    return View();
+                }
 
             }
-            catch
+            else
             {
-                return View();
+
+                return RedirectToAction("SessionOut", "Home");
             }
+            
         }
         [Authorize(Roles = "SuperAdmin, Admin")]
         public ActionResult UserDlt(int ID)

@@ -15,36 +15,44 @@ namespace AMS.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            var ursid = Convert.ToString(Session["Usr_ID"]);
-            var rolename = (from n in db.UserRoles
-                            where n.UserID.ToString() == ursid
-                            select n.Role).FirstOrDefault();
-            ViewBag.RoleName = rolename;
+            if (Session["UserMail"] != null)
+            {
+                var ursid = Convert.ToString(Session["Usr_ID"]);
+                var rolename = (from n in db.UserRoles
+                                where n.UserID.ToString() == ursid
+                                select n.Role).FirstOrDefault();
+                ViewBag.RoleName = rolename;
 
-            var UserList = new List<SelectListItem>();
-            var userList = GetUserList();
-            foreach (var item in userList)
-            {
-                UserList.Add(new SelectListItem { Text = item.Name + " | " + item.Email, Value = item.ID.ToString() });
+                var UserList = new List<SelectListItem>();
+                var userList = GetUserList();
+                foreach (var item in userList)
+                {
+                    UserList.Add(new SelectListItem { Text = item.Name + " | " + item.Email, Value = item.ID.ToString() });
+                }
+                ViewBag.UserList = UserList;
+                var mode = new List<SelectListItem>();
+                {
+                    mode.Add(new SelectListItem { Text = "Admin", Value = "Admin" });
+                    mode.Add(new SelectListItem { Text = "Suppliers", Value = "Suppliers" });
+                    mode.Add(new SelectListItem { Text = "Agent", Value = "Agent" });
+                    //mode.Add(new SelectListItem { Text = "Bank", Value = "Bank" });
+                };
+                ViewBag.Role = mode;
+                var adminmode = new List<SelectListItem>();
+                {
+                    //adminmode.Add(new SelectListItem { Text = "Admin", Value = "Admin" });
+                    adminmode.Add(new SelectListItem { Text = "Suppliers", Value = "Suppliers" });
+                    adminmode.Add(new SelectListItem { Text = "Agent", Value = "Agent" });
+                    //mode.Add(new SelectListItem { Text = "Bank", Value = "Bank" });
+                };
+                ViewBag.adminRole = adminmode;
+                return View();
             }
-            ViewBag.UserList = UserList;
-            var mode = new List<SelectListItem>();
+            else
             {
-                mode.Add(new SelectListItem { Text = "Admin", Value = "Admin" });
-                mode.Add(new SelectListItem { Text = "Suppliers", Value = "Suppliers" });
-                mode.Add(new SelectListItem { Text = "Agent", Value = "Agent" });
-                //mode.Add(new SelectListItem { Text = "Bank", Value = "Bank" });
-            };
-            ViewBag.Role = mode;
-            var adminmode = new List<SelectListItem>();
-            {
-                //adminmode.Add(new SelectListItem { Text = "Admin", Value = "Admin" });
-                adminmode.Add(new SelectListItem { Text = "Suppliers", Value = "Suppliers" });
-                adminmode.Add(new SelectListItem { Text = "Agent", Value = "Agent" });
-                //mode.Add(new SelectListItem { Text = "Bank", Value = "Bank" });
-            };
-            ViewBag.adminRole = adminmode;
-            return View();
+
+                return RedirectToAction("SessionOut","Home");
+            }
         }
         private List<user> GetUserList()
         {

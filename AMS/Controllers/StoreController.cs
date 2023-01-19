@@ -37,16 +37,27 @@ namespace AMS.Controllers
         [HttpPost]
         public ActionResult AddStore(Store_tbl model)
         {
-            model.InsTime = DateTime.Now;
-            model.InsBy = Convert.ToString(Session["UserMail"]); ;
-            model.UpdateTime = null;
-            model.UpdateBy = null;
+            if (Session["UserMail"] != null)
+            {
+                model.InsTime = DateTime.Now;
+                model.InsBy = Convert.ToString(Session["UserMail"]); ;
+                model.UpdateTime = null;
+                model.UpdateBy = null;
 
-            db.Store_tbls.Add(model);
-            db.SaveChanges();
-             ModelState.Clear();
+                db.Store_tbls.Add(model);
+                db.SaveChanges();
+                ModelState.Clear();
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+
+            }
+            else
+            {
+
+                return RedirectToAction("SessionOut", "Home");
+            }
+
+            
         }
         public ActionResult StoreEdit(int StID)
         {
@@ -55,26 +66,38 @@ namespace AMS.Controllers
         [HttpPost]
         public ActionResult StoreEdit(int StID, Store_tbl model)
         {
-            try
+            if (Session["UserMail"] != null)
             {
-                var mod = (from n in db.Store_tbls where n.StID == StID select n).FirstOrDefault();
-                mod.StoreName = model.StoreName;
-                mod.StoreID = model.StoreID;
-                mod.AgentID = model.AgentID;
-                mod.Remarks = model.Remarks;
-                
-                mod.UpdateBy = Convert.ToString(Session["UserMail"]); ;
-                mod.UpdateTime = DateTime.Now;
 
-                db.SaveChanges();
+                try
+                {
+                    var mod = (from n in db.Store_tbls where n.StID == StID select n).FirstOrDefault();
+                    mod.StoreName = model.StoreName;
+                    mod.StoreID = model.StoreID;
+                    mod.AgentID = model.AgentID;
+                    mod.Remarks = model.Remarks;
 
-                return RedirectToAction("Index", "Store");
+                    mod.UpdateBy = Convert.ToString(Session["UserMail"]); ;
+                    mod.UpdateTime = DateTime.Now;
+
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index", "Store");
+
+                }
+                catch
+                {
+                    return View();
+                }
 
             }
-            catch
+            else
             {
-                return View();
+
+                return RedirectToAction("SessionOut", "Home");
             }
+
+            
         }
         public ActionResult StoreDelete(int StID)
         {

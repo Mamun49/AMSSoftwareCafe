@@ -41,20 +41,32 @@ namespace AMS.Controllers
         [HttpPost]
         public ActionResult AddItem(STK_Item model)
         {
-            model.InsertTime = DateTime.Now;
-            model.InsertBy = Convert.ToString(Session["UserMail"]); ;
-            model.UpdateTime = null;
-            model.UpdateBy = null;
+            if (Session["UserMail"] != null)
+            {
+
+                model.InsertTime = DateTime.Now;
+                model.InsertBy = Convert.ToString(Session["UserMail"]); ;
+                model.UpdateTime = null;
+                model.UpdateBy = null;
 
 
 
-            db.STK_Items.Add(model);
-            db.SaveChanges();
+                db.STK_Items.Add(model);
+                db.SaveChanges();
 
 
-            ModelState.Clear();
+                ModelState.Clear();
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+
+            }
+            else
+            {
+
+                return RedirectToAction("SessionOut", "Home");
+            }
+
+            
         }
         public ActionResult ItemEdit(int ID)
         {
@@ -70,31 +82,43 @@ namespace AMS.Controllers
         [HttpPost]
         public ActionResult ItemEdit(STK_Item model, int ID)
         {
-            try
+            if (Session["UserMail"] != null)
             {
-                var mod = (from n in db.STK_Items where n.ID == ID select n).FirstOrDefault();
-                mod.CID = model.CID;
-                mod.SCID = model.SCID;
-                mod.ItemName = model.ItemName;
-                mod.ItemCode = model.ItemCode;
-                mod.Brand = model.Brand;
-                mod.Discount = model.Discount;
-                mod.DiscountTp = model.DiscountTp;
-                mod.MinStock = model.MinStock;
-                mod.Remarks = model.Remarks;
-                mod.Unit = model.Unit;
-                mod.UpdateBy = Convert.ToString(Session["UserMail"]);;
-                mod.UpdateTime = DateTime.Now;
-                
-                db.SaveChanges();
 
-                return RedirectToAction("Index", "Item");
+                try
+                {
+                    var mod = (from n in db.STK_Items where n.ID == ID select n).FirstOrDefault();
+                    mod.CID = model.CID;
+                    mod.SCID = model.SCID;
+                    mod.ItemName = model.ItemName;
+                    mod.ItemCode = model.ItemCode;
+                    mod.Brand = model.Brand;
+                    mod.Discount = model.Discount;
+                    mod.DiscountTp = model.DiscountTp;
+                    mod.MinStock = model.MinStock;
+                    mod.Remarks = model.Remarks;
+                    mod.Unit = model.Unit;
+                    mod.UpdateBy = Convert.ToString(Session["UserMail"]); ;
+                    mod.UpdateTime = DateTime.Now;
+
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index", "Item");
+
+                }
+                catch
+                {
+                    return View();
+                }
 
             }
-            catch
+            else
             {
-                return View();
+
+                return RedirectToAction("SessionOut", "Home");
             }
+
+            
         }
         public ActionResult ItemDelete(int ID)
         {

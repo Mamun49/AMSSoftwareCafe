@@ -80,50 +80,62 @@ namespace AMS.Controllers
         }
         public ActionResult SaveProduct(string TRANSDT, string TRANSNO, string STOREFR, string STORETO, string TRANSYY, int TotalAmount, STK_Trans[] order)
         {
-            string result = "Error! Order Is Not Complete!";
-
-            foreach (var item in order)
+            if (Session["UserMail"] != null)
             {
-                STK_Trans obj = new STK_Trans();
-                var Itemname = (from n in db.STK_Items where n.ID == item.ITEMID select n.ItemName).FirstOrDefault();
-                obj.TRANSDT = Convert.ToDateTime(TRANSDT);
-                obj.TRANSYY = TRANSYY;
-                obj.TRANSNO = TRANSNO;
-                obj.STORETO = STORETO;
-                obj.STOREFR = STOREFR;
-                obj.TRANSTP = "Recevied";
-                obj.InsBy = Convert.ToString(Session["UserMail"]); ;
-                obj.InsDate = DateTime.Now;
-                obj.ITEMSL = Itemname;
-                obj.ITEMID = item.ITEMID;
-                obj.SIZE = item.SIZE;
-                obj.COLOR = item.COLOR;
-                obj.QTY = item.QTY;
-                obj.RATE = item.RATE;
-                obj.AMOUNT = item.AMOUNT;
+                string result = "Error! Order Is Not Complete!";
 
-                db.STK_Trans.Add(obj);
+                foreach (var item in order)
+                {
+                    STK_Trans obj = new STK_Trans();
+                    var Itemname = (from n in db.STK_Items where n.ID == item.ITEMID select n.ItemName).FirstOrDefault();
+                    obj.TRANSDT = Convert.ToDateTime(TRANSDT);
+                    obj.TRANSYY = TRANSYY;
+                    obj.TRANSNO = TRANSNO;
+                    obj.STORETO = STORETO;
+                    obj.STOREFR = STOREFR;
+                    obj.TRANSTP = "Recevied";
+                    obj.InsBy = Convert.ToString(Session["UserMail"]); ;
+                    obj.InsDate = DateTime.Now;
+                    obj.ITEMSL = Itemname;
+                    obj.ITEMID = item.ITEMID;
+                    obj.SIZE = item.SIZE;
+                    obj.COLOR = item.COLOR;
+                    obj.QTY = item.QTY;
+                    obj.RATE = item.RATE;
+                    obj.AMOUNT = item.AMOUNT;
+
+                    db.STK_Trans.Add(obj);
+
+                }
+
+
+                STK_TRANSMST add = new STK_TRANSMST();
+                add.InsBy = Convert.ToString(Session["UserMail"]); ;
+                add.InsDate = DateTime.Now;
+                add.StoreFrom = STOREFR;
+                add.StoreTo = STORETO;
+                add.TransNo = TRANSNO;
+                add.TransTP = "Recevied";
+                add.TransYear = TRANSYY;
+                add.TransDate = Convert.ToDateTime(TRANSDT);
+                add.TotalAmount = TotalAmount;
+
+                db.STK_TRANSMSTs.Add(add);
+                db.SaveChanges();
+
+
+                result = "Success! Order Is Complete!";
+                return Json(result, JsonRequestBehavior.AllowGet);
+
 
             }
+            else
+            {
 
+                return RedirectToAction("SessionOut", "Home");
+            }
 
-            STK_TRANSMST add = new STK_TRANSMST();
-            add.InsBy = Convert.ToString(Session["UserMail"]); ;
-            add.InsDate = DateTime.Now;
-            add.StoreFrom = STOREFR;
-            add.StoreTo = STORETO;
-            add.TransNo = TRANSNO;
-            add.TransTP = "Recevied";
-            add.TransYear = TRANSYY;
-            add.TransDate = Convert.ToDateTime(TRANSDT);
-            add.TotalAmount = TotalAmount;
-
-            db.STK_TRANSMSTs.Add(add);
-            db.SaveChanges();
-
-
-            result = "Success! Order Is Complete!";
-            return Json(result, JsonRequestBehavior.AllowGet);
+           
         }
         
     }

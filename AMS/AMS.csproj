@@ -686,6 +686,7 @@
     <Content Include="Views\PartySearch\Index.cshtml" />
     <Content Include="Views\PartySearch\GetPartyLedger.cshtml" />
     <Content Include="Views\RoleManager\Index.cshtml" />
+    <Content Include="Views\Home\SessionOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

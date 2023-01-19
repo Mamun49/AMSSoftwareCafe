@@ -14,13 +14,25 @@ namespace AMS.Controllers
         // GET: Purchase
         public ActionResult Index(string Invid)
         {
-            return View();
+            if (Session["UserMail"] != null)
+            {
+
+
+                return View();
+            }
+            else
+            {
+
+                return RedirectToAction("SessionOut", "Home");
+            }
         }
 
 
 
         public JsonResult EditSave(int ID, string ITEMSL, string SIZE, string COLOR, int QTY, int RATE, int AMOUNT, string INV)
         {
+
+
             var mod = (from n in db.STK_Trans where n.ID == ID select n).FirstOrDefault();
             mod.ITEMSL = ITEMSL;
             mod.SIZE = SIZE;
