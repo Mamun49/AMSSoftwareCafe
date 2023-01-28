@@ -15,9 +15,22 @@ namespace AMS.Controllers
     {
         AMSModel db = new AMSModel();
         // GET: Transfer
+        //public class RememberLastPageAttribute : ActionFilterAttribute
+        //{
+        //    public override void OnActionExecuting(ActionExecutingContext filterContext)
+        //    {
+        //        if (filterContext.HttpContext.Request.IsAuthenticated)
+        //        {
+        //            filterContext.Controller.TempData["LastPage"] = filterContext.HttpContext.Request.Url;
+        //        }
+        //    }
+        //}
         public ActionResult Index()
         {
-            var Random = new Random();
+            if (Session["UserMail"] != null)
+            {
+
+                var Random = new Random();
             var num = Random.Next(0, 10000);
             var memo = "Inv" + "-" + Convert.ToString(num) + "/PUR-" + DateTime.Now.Year;
             ViewBag.Memo = memo;
@@ -53,6 +66,12 @@ namespace AMS.Controllers
             }
             ViewBag.CatList = CatList;
             return View();
+            }
+            else
+            {
+
+                return RedirectToAction("SessionOut", "Home");
+            }
         }
         private List<Store_tbl> GetStoreList()
         {
@@ -82,6 +101,11 @@ namespace AMS.Controllers
         {
             List<SubCategory> Subcat = db.SubCategories.Where(x => x.CID == CID).ToList();
             return Json(Subcat, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetItemList(int CID, int SCID)
+        {
+            List<STK_Item> ItemSelect = db.STK_Items.Where(x => x.CID == CID && x.SCID==SCID).ToList();
+            return Json(ItemSelect, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult SaveProduct(string TRANSDT, string TRANSNO, string STORETO, int PSID, string TRANSYY, int TotalAmount, STK_Trans[] order)

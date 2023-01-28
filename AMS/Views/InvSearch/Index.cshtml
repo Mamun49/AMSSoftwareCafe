@@ -291,12 +291,13 @@
         $('#amount').val(rate * box);
     });
     $("#datepick").change(function (e) {
-
+        var text = "Select Invoice";
         $.get("/InvSearch/InvoiceSearch", { date: $("#datepick").val() }, function (data) {
             $("#Invid").empty();
+            $("#Invid").append("<option value=''>" + text+"</option>");
             $.each(data, function (index, row) {
 
-                $("#Invid").append("<option value='" + row + "'>" + row + "</option>")
+                $("#Invid").append("<option value='" + row + "'>" + row + "</option>");
             });
         });
     });

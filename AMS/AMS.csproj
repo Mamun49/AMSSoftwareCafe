@@ -206,6 +206,7 @@
     <Content Include="Content\assets\common-assets\img\1.jpg" />
     <Content Include="Content\assets\common-assets\img\2.jpg" />
     <Content Include="Content\assets\common-assets\img\3.jpg" />
+    <Content Include="Content\assets\common-assets\img\708-man-style-6-lineal.gif" />
     <Content Include="Content\assets\common-assets\img\apple-desktop.png" />
     <Content Include="Content\assets\common-assets\img\apple-phone.png" />
     <Content Include="Content\assets\common-assets\img\apple-watch.png" />
@@ -228,6 +229,8 @@
     <Content Include="Content\assets\common-assets\img\error-503-1.jpg" />
     <Content Include="Content\assets\common-assets\img\error-maintainence-1.jpg" />
     <Content Include="Content\assets\common-assets\img\favicon.ico" />
+    <Content Include="Content\assets\common-assets\img\female-flat.gif" />
+    <Content Include="Content\assets\common-assets\img\flag\Flag_of_Bangladesh.svg.png" />
     <Content Include="Content\assets\common-assets\img\flag\france-flag.png" />
     <Content Include="Content\assets\common-assets\img\flag\saudi-arabia-flag.png" />
     <Content Include="Content\assets\common-assets\img\flag\spain-flag.png" />
@@ -247,6 +250,7 @@
     <Content Include="Content\assets\common-assets\img\lightbox-9.jpg" />
     <Content Include="Content\assets\common-assets\img\logo.png" />
     <Content Include="Content\assets\common-assets\img\logo_white_transparent.png" />
+    <Content Include="Content\assets\common-assets\img\man-flat.gif" />
     <Content Include="Content\assets\common-assets\img\plus.png" />
     <Content Include="Content\assets\common-assets\img\privacy-img.png" />
     <Content Include="Content\assets\common-assets\img\product-1.jpg" />

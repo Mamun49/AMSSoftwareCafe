@@ -74,6 +74,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <p style="color:red; text-align:center;">**Please reload the page before Enter the Data!!**</p>
                                 <div class="widget-content widget-content-area">
                                     <div class="form-group row">
                                         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -82,7 +83,7 @@
                                                     <div class="col-md-4 mb-4">
                                                         <label for="validationCustom01">Date</label>
 
-                                                        <input id="datepick" class="form-control flatpickr flatpickr-input active" type="date" required value ="today();">
+                                                        <input id="datepick" class="form-control flatpickr flatpickr-input active" type="date" required value="today();">
 
                                                     </div>
                                                     <div class="col-md-4 mb-4">
@@ -120,12 +121,12 @@
                                                             }
                                                         </select>
                                                         @*<select class="form-control" id="suppid">
-                                                            @for (int i = 0; i < Supplist.Count; i++)
-                                                            {
+                                            @for (int i = 0; i < Supplist.Count; i++)
+                                            {
 
-                                                                <option value="@Supplist[i].Value">@Supplist[i].Text</option>
-                                                            }
-                                                        </select>*@
+                                                <option value="@Supplist[i].Value">@Supplist[i].Text</option>
+                                            }
+                                        </select>*@
 
                                                     </div>
 
@@ -136,6 +137,7 @@
                                                     <div class="col-md-3 mb-3">
                                                         <label for="validationCustom01">Category</label>
                                                         <select class="form-control" id="Catid">
+                                                            <option value="">Select Category</option>
                                                             @for (int i = 0; i < Catlist.Count; i++)
                                                             {
 
@@ -153,11 +155,11 @@
                                                     <div class="col-md-6 mb-6">
                                                         <label for="validationCustom02">Item Name</label>
                                                         <select class="form-control" id="itemname">
-                                                            @for (int i = 0; i < Itemlist.Count; i++)
+                                                            @*@for (int i = 0; i < Itemlist.Count; i++)
                                                             {
 
                                                                 <option value="@Itemlist[i].Value">@Itemlist[i].Text</option>
-                                                            }
+                                                            }*@
                                                         </select>
                                                     </div>
 
@@ -191,20 +193,20 @@
 
                                                     </div>
                                                     @*<div class="col-md-2 mb-2">
-                                                            <label for="validationCustom02">Discount(%)</label>
-                                                            <input type="email" class="form-control" >
+                                        <label for="validationCustom02">Discount(%)</label>
+                                        <input type="email" class="form-control" >
 
-                                                        </div>
-                                                        <div class="col-md-2 mb-2">
-                                                            <label for="validationCustom02">Discount</label>
-                                                            <input type="email" class="form-control" >
+                                    </div>
+                                    <div class="col-md-2 mb-2">
+                                        <label for="validationCustom02">Discount</label>
+                                        <input type="email" class="form-control" >
 
-                                                        </div>*@
+                                    </div>*@
                                                     @*<div class="col-md-3 mb-3">
-                                                            <label for="validationCustom02">Gross Amount</label>
-                                                            <input type="email" class="form-control" disabled="disabled" id="grosamount">
+                                        <label for="validationCustom02">Gross Amount</label>
+                                        <input type="email" class="form-control" disabled="disabled" id="grosamount">
 
-                                                        </div>*@
+                                    </div>*@
                                                     <div class="col-md-1 mb-1">
 
                                                         <br />
@@ -242,7 +244,7 @@
                                                 <div class="form-row">
                                                     <div class="col-md-12 mb-12">
                                                         <label for="validationCustom01">Total Amount</label>
-                                                        <input type="email" class="form-control" id="totalamount">
+                                                        <input type="email" class="form-control" id="totalamount" disabled="disabled">
 
                                                     </div>
                                                     <div class="col-md-12 mb-12">
@@ -279,7 +281,23 @@
                             </div>
 
                         </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            <div class="form-row">
+                                <div class="col-md-4 mb-4">
+                                    <label for="validationCustom02">Total QTY:</label>
+                                    <input type="number" class="form-control" id="totalqty" disabled>
 
+                                </div>
+                                <div class="col-md-5 mb-6">
+
+                                    <label for="validationCustom02">Total Amount</label>
+                                    <input type="number" class="form-control" id="totalamount1" disabled>
+                                </div>
+
+                            </div>
+
+                            <br />
+                        </div>
 
                         <div class="table-responsive mb-9">
                             <table id="basic-dt" class="table table-hover" style="width:70%">
@@ -317,10 +335,11 @@
 <script>
     $(document).ready(function () {
         var emptyrow = "<tr><td colspan='5' class = 'text-center'> Add Product</td></tr>";
+        var selecttext = "-Select-";
         $("#Catid").change(function () {
             $.get("/Issue/GetCategoryList", { CID: $("#Catid").val() }, function (data) {
                 $("#SubCatid").empty();
-
+                $("#SubCatid").append("<option value= ''>" + selecttext + " </option>")
                 $.each(data, function (index, row) {
                     /*var row = "<tr><td>" + row.SubCatName + "</td></tr>";*/
                     $("#SubCatid").append("<option value= '" + row.SCID + "'>" + row.SubCatName + " </option>")
@@ -328,6 +347,19 @@
                 });
             });
         })
+        $("#SubCatid").change(function () {
+            var CID = $("#Catid").val();
+            var SCID = $("#SubCatid").val();
+            var url = "/Purchase/GetItemList?CID=" + CID + "&SCID=" + SCID;
+            $.get(url, function (data) {
+                $("#itemname").empty();
+                $("#itemname").append("<option value= ''>" + selecttext + " </option>")
+                $.each(data, function (index, row) {
+                    $("#itemname").append("<option value= '" + row.ID + "'>" + row.ID + "|" + row.ItemCode + "|" + row.ItemName + " </option>")
+                })
+            })
+        })
+
     });
     $('#qty, #rate').keyup(function () {
         var rate = parseFloat($('#qty').val()) || 0;
@@ -361,12 +393,19 @@
         clearItem();
 
         let total = 0;
+        let totalqty = 0;
         let trCount = $('tr').length;
         for (i = 1; i < trCount; i++) {
             let tdtext = $("tr:eq(" + i + ") td:eq(5)").text();
             total += Number(tdtext);
         }
+        for (i = 1; i < trCount; i++) {
+            let tdtext = $("tr:eq(" + i + ") td:eq(3)").text();
+            totalqty += Number(tdtext);
+        }
         $("#totalamount").val(total);
+        $("#totalamount1").val(total);
+        $("#totalqty").val(totalqty);
     });
 
 

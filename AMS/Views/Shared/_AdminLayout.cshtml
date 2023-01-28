@@ -32,7 +32,8 @@
     <link href="~/Content/assets/css/elements/tooltip.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/assets/css/loader.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/assets/css/apps/invoice.css" rel="stylesheet" type="text/css" />
-    @*<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>*@
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/common-assets/plugins/table/datatable/datatables.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/common-assets/plugins/table/datatable/dt-global_style.css">
     <script src="~/Content/assets/js/libs/jquery-3.1.1.min.js"></script>
     @*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">*@
 
@@ -172,6 +173,10 @@
                     </a>
                     <div class="dropdown-menu position-absolute" aria-labelledby="language-dropdown">
                         <a class="dropdown-item d-flex" href="javascript:void(0);">
+                            <img src="~/Content/assets/common-assets/img/flag/Flag_of_Bangladesh.svg.png" class="flag-width" alt="flag">
+                            <span class="align-self-center">&nbsp;Bangla</span>
+                        </a>
+                        <a class="dropdown-item d-flex" href="javascript:void(0);">
                             <img src="~/Content/assets/common-assets/img/flag/usa-flag.png" class="flag-width" alt="flag">
                             <span class="align-self-center">&nbsp;English</span>
                         </a>
@@ -187,6 +192,7 @@
                             <img src="~/Content/assets/common-assets/img/flag/saudi-arabia-flag.png" class="flag-width" alt="flag">
                             <span class="align-self-center">&nbsp;Arabic</span>
                         </a>
+                        
                     </div>
                 </li>
                 <li class="nav-item dropdown message-dropdown">
@@ -206,11 +212,11 @@
                                     <a class="account-item">
                                         <div class="media">
                                             <div class="user-img">
-                                                <img class="rounded-circle avatar-xs" src="~/Content/assets/common-assets/img/profile-11.jpg" alt="profile">
+                                                <img class="rounded-circle avatar-xs" src="~/Content/assets/common-assets/img/female-flat.gif" alt="profile">
                                             </div>
                                             <div class="media-body">
                                                 <div class="">
-                                                    <h6 class="text-primary font-13 mb-0 strong">Jennifer Queen</h6>
+                                                    <h6 class="text-primary font-13 mb-0 strong">A Girl</h6>
                                                     <p class="m-0 mt-1 font-10 text-muted">Permission Required</p>
                                                 </div>
                                             </div>
@@ -219,11 +225,11 @@
                                     <a class="account-item marked-read">
                                         <div class="media">
                                             <div class="user-img">
-                                                <img class="rounded-circle avatar-xs" src="~/Content/assets/common-assets/img/profile-10.jpg" alt="profile">
+                                                <img class="rounded-circle avatar-xs" src="~/Content/assets/common-assets/img/man-flat.gif" alt="profile">
                                             </div>
                                             <div class="media-body">
                                                 <div class="">
-                                                    <h6 class="text-primary font-13 mb-0 strong">Lara Smith</h6>
+                                                    <h6 class="text-primary font-13 mb-0 strong">Jakaria Shumul</h6>
                                                     <p class="m-0 mt-1 font-10 text-muted">Invoice needed</p>
                                                 </div>
                                             </div>
@@ -232,11 +238,11 @@
                                     <a class="account-item marked-read">
                                         <div class="media">
                                             <div class="user-img">
-                                                <img class="rounded-circle avatar-xs" src="~/Content/assets/common-assets/img/profile-9.jpg" alt="profile">
+                                                <img class="rounded-circle avatar-xs" src="~/Content/assets/common-assets/img/man-flat.gif" alt="profile">
                                             </div>
                                             <div class="media-body">
                                                 <div class="">
-                                                    <h6 class="text-primary font-13 mb-0 strong">Victoria Williamson</h6>
+                                                    <h6 class="text-primary font-13 mb-0 strong">Hasan Mamun</h6>
                                                     <p class="m-0 mt-1 font-10 text-muted">Account need to be synced</p>
                                                 </div>
                                             </div>
@@ -323,7 +329,8 @@
                 </li>
                 <li class="nav-item dropdown user-profile-dropdown">
                     <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <img src="~/Content/assets/common-assets/img/profile-16.jpg" alt="avatar">
+                        <img src="~/Content/assets/common-assets/img/708-man-style-6-lineal.gif" alt="avatar">
+                        
                     </a>
                     <div class="dropdown-menu position-absolute" aria-labelledby="userProfileDropdown">
                         <div class="nav-drop is-account-dropdown">
@@ -336,7 +343,7 @@
                                         <div class="media align-center">
                                             <div class="media-left">
                                                 <div class="image">
-                                                    <img class="rounded-circle avatar-xs" src="~/Content/assets/common-assets/img/profile-16.jpg" alt="">
+                                                    <img class="rounded-circle avatar-xs" src="~/Content/assets/common-assets/img/708-man-style-6-lineal.gif" alt="">
                                                 </div>
                                             </div>
                                             <div class="media-content ml-3">
@@ -773,12 +780,14 @@
 
                             <li>
                                 <a href="~/Ledger/Index"> Item Ledger </a>
-                            </li><li>
+                            </li>
+                            <li>
                                 <a href="~/StoreSearch/Index"> Store Ledger </a>
-                            </li><li>
+                            </li>
+                            <li>
                                 <a href="~/PartySearch/Index"> Suppliers/Party Ledger </a>
                             </li>
-                           
+
 
 
                         </ul>
@@ -912,143 +921,8 @@
                                                     <span class="mb-0 mt-1 text-info">Personal</span>
                                                 </a>
                                             </div>
-                                            <h6 class="right-bar-heading px-3 mt-2 text-uppercase">My Favourites <a href="javascript: void(0);"><i class="las la-angle-right"></i></i></a></h6>
-                                            <div class="p-2">
-                                                <a href="javascript: void(0);" class="text-reset">
-                                                    <div class="media pt-0">
-                                                        <div class="position-relative mr-2">
-                                                            <img src="~/Content/assets/common-assets/img/profile-1.jpg" class="rounded-circle avatar-sm ml-2" alt="user-pic">
-                                                            <span class="user-status online"></span>
-                                                        </div>
-                                                        <div class="media-body overflow-hidden mr-2">
-                                                            <h6 class="mt-0 mb-1 font-13">Andrew Mackie</h6>
-                                                            <div class="font-12">
-                                                                <p class="mb-0 text-truncate">It will seem like simplified English.</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <a href="javascript: void(0);" class="text-reset">
-                                                    <div class="media">
-                                                        <div class="position-relative mr-2">
-                                                            <img src="~/Content/assets/common-assets/img/profile-2.jpg" class="rounded-circle avatar-sm ml-2" alt="user-pic">
-                                                            <span class="user-status online"></span>
-                                                        </div>
-                                                        <div class="media-body overflow-hidden mr-2">
-                                                            <h6 class="mt-0 mb-1 font-13">Sophia Garner</h6>
-                                                            <div class="font-12">
-                                                                <p class="mb-0 text-truncate">Nice and amazing.</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <a href="javascript: void(0);" class="text-reset">
-                                                    <div class="media">
-                                                        <div class="position-relative mr-2">
-                                                            <img src="~/Content/assets/common-assets/img/profile-3.jpg" class="rounded-circle avatar-sm ml-2" alt="user-pic">
-                                                            <span class="user-status online"></span>
-                                                        </div>
-                                                        <div class="media-body overflow-hidden mr-2">
-                                                            <h6 class="mt-0 mb-1 font-13">Jackie Smith</h6>
-                                                            <div class="font-12">
-                                                                <p class="mb-0 text-truncate">Send me the .pdf files asap.</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <h6 class="right-bar-heading px-3 mt-2 text-uppercase">Chats <a href="javascript: void(0);"><i class="las la-angle-right"></i></i></a></h6>
-                                            <div class="p-2 pb-4">
-                                                <a href="javascript: void(0);" class="text-reset">
-                                                    <div class="media pt-0">
-                                                        <div class="position-relative mr-2">
-                                                            <img src="~/Content/assets/common-assets/img/profile-3.jpg" class="rounded-circle avatar-sm ml-2" alt="user-pic">
-                                                            <span class="user-status online"></span>
-                                                        </div>
-                                                        <div class="media-body overflow-hidden mr-2">
-                                                            <h6 class="mt-0 mb-1 font-13">Owen Hargrieves</h6>
-                                                            <div class="font-12">
-                                                                <p class="mb-0 text-truncate">That's really cool</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <a href="javascript: void(0);" class="text-reset">
-                                                    <div class="media">
-                                                        <div class="position-relative mr-2">
-                                                            <img src="~/Content/assets/common-assets/img/profile-4.jpg" class="rounded-circle avatar-sm ml-2" alt="user-pic">
-                                                            <span class="user-status online"></span>
-                                                        </div>
-                                                        <div class="media-body overflow-hidden mr-2">
-                                                            <h6 class="mt-0 mb-1 font-13">Riyana Giyan</h6>
-                                                            <div class="font-12">
-                                                                <p class="mb-0 text-truncate">When do you send me those files ?</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <a href="javascript: void(0);" class="text-reset">
-                                                    <div class="media">
-                                                        <div class="position-relative mr-2">
-                                                            <img src="~/Content/assets/common-assets/img/profile-5.jpg" class="rounded-circle avatar-sm ml-2" alt="user-pic">
-                                                            <span class="user-status online"></span>
-                                                        </div>
-                                                        <div class="media-body overflow-hidden mr-2">
-                                                            <h6 class="mt-0 mb-1 font-13">Ryan Timberlake</h6>
-                                                            <div class="font-12">
-                                                                <p class="mb-0 text-truncate">Invoice has been generated</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <a href="javascript: void(0);" class="text-reset">
-                                                    <div class="media">
-                                                        <div class="position-relative mr-2">
-                                                            <img src="~/Content/assets/common-assets/img/profile-6.jpg" class="rounded-circle avatar-sm ml-2" alt="user-pic">
-                                                            <span class="user-status online"></span>
-                                                        </div>
-                                                        <div class="media-body overflow-hidden mr-2">
-                                                            <h6 class="mt-0 mb-1 font-13">Julie Roman</h6>
-                                                            <div class="font-12">
-                                                                <p class="mb-0 text-truncate">Thank you so much.</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <a href="javascript: void(0);" class="text-reset">
-                                                    <div class="media">
-                                                        <div class="position-relative mr-2">
-                                                            <img src="~/Content/assets/common-assets/img/profile-7.jpg" class="rounded-circle avatar-sm ml-2" alt="user-pic">
-                                                            <span class="user-status online"></span>
-                                                        </div>
-                                                        <div class="media-body overflow-hidden mr-2">
-                                                            <h6 class="mt-0 mb-1 font-13">Gareth Sarkar</h6>
-                                                            <div class="font-12">
-                                                                <p class="mb-0 text-truncate">Thats was awesome</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <a href="javascript: void(0);" class="text-reset">
-                                                    <div class="media">
-                                                        <div class="position-relative mr-2">
-                                                            <img src="~/Content/assets/common-assets/img/profile-8.jpg" class="rounded-circle avatar-sm ml-2" alt="user-pic">
-                                                            <span class="user-status online"></span>
-                                                        </div>
-                                                        <div class="media-body overflow-hidden mr-2">
-                                                            <h6 class="mt-0 mb-1 font-13">Kylie Roberts</h6>
-                                                            <div class="font-12">
-                                                                <p class="mb-0 text-truncate">Amazing feature.</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <div class="text-center pt-4">
-                                                    <a href="javascript:void(0);" class="btn btn-sm btn-primary">
-                                                        Load more
-                                                    </a>
-                                                </div>
-                                            </div>
+                                             
+                                            
                                         </div>
                                         <div class="tab-pane rightbar-tab" id="status-tab" role="tabpanel">
                                             <h6 class="right-bar-heading p-2 px-3 mt-2 text-uppercase">Order Status </h6>
@@ -1190,6 +1064,10 @@
     <!-- Common Script Starts -->
     <script src="~/Content/assets/js/libs/jquery-3.1.1.min.js"></script>
     <script src="~/Content/assets/common-assets/bootstrap/js/popper.min.js"></script>
+    
+
+    
+
     <script src="~/Content/assets/common-assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/Content/assets/common-assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="~/Content/assets/js/app.js"></script>

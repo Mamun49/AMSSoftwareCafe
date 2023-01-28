@@ -14,7 +14,10 @@ namespace AMS.Controllers
         // GET: Transfer
         public ActionResult Index()
         {
-            var Random = new Random();
+            if (Session["UserMail"] != null)
+            {
+
+                var Random = new Random();
             var num = Random.Next(0, 10000);
             var memo = "Inv" + "-" + Convert.ToString(num) + "/TRNS-" + DateTime.Now.Year;
             ViewBag.Memo = memo;
@@ -49,6 +52,12 @@ namespace AMS.Controllers
             }
             ViewBag.CatList = CatList;
             return View();
+            }
+            else
+            {
+
+                return RedirectToAction("SessionOut", "Home");
+            }
         }
         private List<STK_Item> GetItemList()
         {
