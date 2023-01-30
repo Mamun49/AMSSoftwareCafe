@@ -16,6 +16,7 @@ namespace AMS.Models
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<SubCategory> SubCategories { get; set; }
         public virtual DbSet<STK_Item> STK_Items { get; set; }
+        public virtual DbSet<STK_Stock> STK_Stocks { get; set; }
         public virtual DbSet<Store_tbl> Store_tbls { get; set; }
         public virtual DbSet<PS_tbl> PS_Tbls { get; set; }
         public virtual DbSet<STK_Trans>STK_Trans { get; set; }

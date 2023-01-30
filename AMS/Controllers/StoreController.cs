@@ -40,7 +40,7 @@ namespace AMS.Controllers
             if (Session["UserMail"] != null)
             {
                 model.InsTime = DateTime.Now;
-                model.InsBy = Convert.ToString(Session["UserMail"]); ;
+                model.InsBy = Convert.ToString(Session["UserMail"]); 
                 model.UpdateTime = null;
                 model.UpdateBy = null;
 
@@ -77,7 +77,7 @@ namespace AMS.Controllers
                     mod.AgentID = model.AgentID;
                     mod.Remarks = model.Remarks;
 
-                    mod.UpdateBy = Convert.ToString(Session["UserMail"]); ;
+                    mod.UpdateBy = Convert.ToString(Session["UserMail"]); 
                     mod.UpdateTime = DateTime.Now;
 
                     db.SaveChanges();

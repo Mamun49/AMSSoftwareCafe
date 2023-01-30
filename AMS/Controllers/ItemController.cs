@@ -45,7 +45,7 @@ namespace AMS.Controllers
             {
 
                 model.InsertTime = DateTime.Now;
-                model.InsertBy = Convert.ToString(Session["UserMail"]); ;
+                model.InsertBy = Convert.ToString(Session["UserMail"]); 
                 model.UpdateTime = null;
                 model.UpdateBy = null;
 
@@ -98,7 +98,7 @@ namespace AMS.Controllers
                     mod.MinStock = model.MinStock;
                     mod.Remarks = model.Remarks;
                     mod.Unit = model.Unit;
-                    mod.UpdateBy = Convert.ToString(Session["UserMail"]); ;
+                    mod.UpdateBy = Convert.ToString(Session["UserMail"]); 
                     mod.UpdateTime = DateTime.Now;
 
                     db.SaveChanges();

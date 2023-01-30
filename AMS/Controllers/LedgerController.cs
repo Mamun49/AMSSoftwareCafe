@@ -74,6 +74,8 @@ namespace AMS.Controllers
             ViewBag.ItemCode = Itemcode;
             ViewBag.Size = model.Size;
             ViewBag.Color = model.Color;
+            var ablqty = (from n in db.STK_Stocks where n.ItemID == model.ItemID && n.Size==model.Size && n.Color==model.Color select n.StockQty).FirstOrDefault();
+            ViewBag.Stock = ablqty;
             var dateTime = DateTime.Now.ToString("M/d/yyyy");
 
             ViewBag.Date = dateTime;

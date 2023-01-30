@@ -104,7 +104,7 @@ namespace AMS.Controllers
                     obj.STOREFR = STOREFR;
                     obj.PSID = PSID;
                     obj.TRANSTP = "Sale";
-                    obj.InsBy = Convert.ToString(Session["UserMail"]); ;
+                    obj.InsBy = Convert.ToString(Session["UserMail"]); 
                     obj.InsDate = DateTime.Now;
                     obj.ITEMSL = Itemname;
                     obj.ITEMID = item.ITEMID;
@@ -120,7 +120,7 @@ namespace AMS.Controllers
 
 
                 STK_TRANSMST add = new STK_TRANSMST();
-                add.InsBy = Convert.ToString(Session["UserMail"]); ;
+                add.InsBy = Convert.ToString(Session["UserMail"]); 
                 add.InsDate = DateTime.Now;
                 add.PSID = PSID;
                 add.StoreFrom = STOREFR;

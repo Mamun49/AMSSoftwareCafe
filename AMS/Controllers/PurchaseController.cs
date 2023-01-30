@@ -125,7 +125,7 @@ namespace AMS.Controllers
                     obj.STORETO = STORETO;
                     obj.PSID = PSID;
                     obj.TRANSTP = "Purchase";
-                    obj.InsBy = Convert.ToString(Session["UserMail"]); ;
+                    obj.InsBy = Convert.ToString(Session["UserMail"]);
                     obj.InsDate = DateTime.Now;
                     obj.ITEMSL = Itemname;
                     obj.ITEMID = item.ITEMID;
@@ -136,12 +136,38 @@ namespace AMS.Controllers
                     obj.AMOUNT = item.AMOUNT;
 
                     db.STK_Trans.Add(obj);
+                    var checkitem = (from n in db.STK_Stocks where n.ItemID == item.ITEMID select n).FirstOrDefault();
+                    if(checkitem !=null)
+                    {
+                        var updateitem = (from n in db.STK_Stocks where n.ItemID == item.ITEMID && n.Color==item.COLOR && n.Size==item.SIZE select n).FirstOrDefault();
+                        updateitem.ItemID = item.ITEMID;
+                        updateitem.Color = item.COLOR;
+                        updateitem.LastPrice = item.RATE;
+                        updateitem.Size = item.SIZE;
+                        updateitem.StockQty = item.QTY;
+                        updateitem.UpdateBy = Convert.ToString(Session["UserMail"]);
+                        updateitem.UpdateTime = DateTime.Now;
+                        updateitem.Remarks = TRANSNO;
+                    }
+                    else
+                    {
+                        STK_Stock stk = new STK_Stock();
+                        stk.Color = item.COLOR;
+                        stk.InsertBy= Convert.ToString(Session["UserMail"]);
+                        stk.InsertTime = DateTime.Now;
+                        stk.ItemID = item.ITEMID;
+                        stk.LastPrice = item.RATE;
+                        stk.Size = item.SIZE;
+                        stk.StockQty = item.QTY;
+                        stk.Remarks = TRANSNO;
 
+                        db.STK_Stocks.Add(stk);
+                    }
                 }
-
+                
 
                 STK_TRANSMST add = new STK_TRANSMST();
-                add.InsBy = Convert.ToString(Session["UserMail"]); ;
+                add.InsBy = Convert.ToString(Session["UserMail"]);
                 add.InsDate = DateTime.Now;
                 add.PSID = PSID;
                 add.StoreTo = STORETO;

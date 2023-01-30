@@ -189,6 +189,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\ledgerModel.cs" />
     <Compile Include="Models\PS_tbl.cs" />
+    <Compile Include="Models\STK_Stock.cs" />
     <Compile Include="Models\STK_Item.cs" />
     <Compile Include="Models\STK_Trans.cs" />
     <Compile Include="Models\STK_TRANSMST.cs" />

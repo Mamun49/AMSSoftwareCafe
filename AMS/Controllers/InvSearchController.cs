@@ -40,14 +40,14 @@ namespace AMS.Controllers
             mod.QTY = QTY;
             mod.RATE = RATE;
             mod.AMOUNT = AMOUNT;
-            mod.UpdateBy = Convert.ToString(Session["UserMail"]); ;
+            mod.UpdateBy = Convert.ToString(Session["UserMail"]); 
             mod.UpdateDate = DateTime.Now;
             db.SaveChanges();
 
             var totalamount = (from n in db.STK_Trans where n.TRANSNO == INV select n.AMOUNT).Sum();
             var master = (from n in db.STK_TRANSMSTs where n.TransNo == INV select n).FirstOrDefault();
             master.TotalAmount = totalamount;
-            master.UpdateBy = Convert.ToString(Session["UserMail"]); ;
+            master.UpdateBy = Convert.ToString(Session["UserMail"]); 
             master.UpdateDate = DateTime.Now;
             db.SaveChanges();
             return Json(JsonRequestBehavior.AllowGet);
