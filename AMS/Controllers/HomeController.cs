@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AMS.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,21 @@ namespace AMS.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            AMSModel db = new AMSModel();
+            int totalitem = (from n in db.STK_Stocks
+                             where n.StockQty > 5
+                             select n.ItemID).Count();
+            ViewBag.totaliteminred = totalitem;
+            int itemcount = (from n in db.STK_Items select n.ID).Count();
+            ViewBag.ItemCount = itemcount;
+            int issueitem = (from n in db.STK_Trans where n.TRANSTP == "Issue" select n.ID).Count();
+            ViewBag.IssueItem = issueitem;
+            int sumissue = (from n in db.STK_Trans where n.TRANSTP == "Issue" select n.AMOUNT).Sum();
+            ViewBag.SumIssue = sumissue;
+            var itemresult = (from stock in db.STK_Stocks
+                          where stock.StockQty >5
+                          select new { stock.ItemID, stock.Size, stock.Color }).ToList();
+            ViewBag.warningitem = itemresult;
             return View();
         }
 

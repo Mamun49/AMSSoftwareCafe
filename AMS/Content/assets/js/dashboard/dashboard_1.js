@@ -239,7 +239,7 @@ try {
           },
           total: {
             show: true,
-            label: 'Total',
+            label: 'Total Item',
             color: '##515365',
             fontWeight: 700,
             formatter: function (w) {
@@ -249,7 +249,7 @@ try {
         }
       }
     },
-    labels: ['USA', 'China', 'France', 'Germany'],
+    labels: ['Purchase', 'Issue', 'Sale', 'Received'],
   }
   /* Order Status - Options */
   var options3 = {

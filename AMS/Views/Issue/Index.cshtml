@@ -121,12 +121,12 @@
                                                             }
                                                         </select>
                                                         @*<select class="form-control" id="suppid">
-                                            @for (int i = 0; i < Supplist.Count; i++)
-                                            {
+                                                                @for (int i = 0; i < Supplist.Count; i++)
+                                                                {
 
-                                                <option value="@Supplist[i].Value">@Supplist[i].Text</option>
-                                            }
-                                        </select>*@
+                                                                    <option value="@Supplist[i].Value">@Supplist[i].Text</option>
+                                                                }
+                                                            </select>*@
 
                                                     </div>
 
@@ -134,55 +134,45 @@
                                                 <br />
 
                                                 <div class="form-row">
-                                                    <div class="col-md-3 mb-3">
-                                                        <label for="validationCustom01">Category</label>
-                                                        <select class="form-control" id="Catid">
-                                                            <option value="">Select Category</option>
-                                                            @for (int i = 0; i < Catlist.Count; i++)
-                                                            {
-
-                                                                <option value="@Catlist[i].Value">@Catlist[i].Text</option>
-                                                            }
-                                                        </select>
-
-                                                    </div>
-                                                    <div class="col-md-3 mb-3">
-                                                        <label for="validationCustom01">Sub Category</label>
-                                                        <select class="form-control" id="SubCatid">
-                                                        </select>
-
-                                                    </div>
                                                     <div class="col-md-6 mb-6">
                                                         <label for="validationCustom02">Item Name</label>
                                                         <select class="form-control" id="itemname">
-                                                            @*@for (int i = 0; i < Itemlist.Count; i++)
+
+                                                            @for (int i = 0; i < Itemlist.Count; i++)
                                                             {
 
                                                                 <option value="@Itemlist[i].Value">@Itemlist[i].Text</option>
-                                                            }*@
+                                                            }
                                                         </select>
                                                     </div>
-
-
-                                                </div>
-                                                <br />
-                                                <div class="form-row">
-                                                    <div class="col-md-2 mb-2">
+                                                    <div class="col-md-3 mb-3">
                                                         <label for="validationCustom02">Size</label>
-                                                        <input type="email" class="form-control" id="size">
+                                                        <select class="form-control" id="size">
+                                                        </select>
 
                                                     </div>
                                                     <div class="col-md-3 mb-3">
                                                         <label for="validationCustom02">Color</label>
-                                                        <input type="email" class="form-control" id="colorid">
+                                                        <select class="form-control" id="colorid">
+                                                        </select>
 
                                                     </div>
+
+                                                </div>
+                                                <br />
+                                                <div class="form-row">
+                                                    <div class="col-md-3 mb-3">
+                                                        <label for="validationCustom02">Available Qty</label>
+                                                        <input type="number" class="form-control" id="ablqty" disabled>
+
+                                                    </div>
+
                                                     <div class="col-md-2 mb-2">
                                                         <label for="validationCustom02">QTY</label>
-                                                        <input type="email" class="form-control" id="qty">
+                                                        <input type="number" class="form-control" id="qty">
 
                                                     </div>
-                                                    <div class="col-md-2 mb-2">
+                                                    <div class="col-md-3 mb-3">
                                                         <label for="validationCustom01">Rate</label>
                                                         <input type="email" class="form-control" id="rate">
 
@@ -193,21 +183,21 @@
 
                                                     </div>
                                                     @*<div class="col-md-2 mb-2">
-                                        <label for="validationCustom02">Discount(%)</label>
-                                        <input type="email" class="form-control" >
+                                                            <label for="validationCustom02">Discount(%)</label>
+                                                            <input type="email" class="form-control" >
 
-                                    </div>
-                                    <div class="col-md-2 mb-2">
-                                        <label for="validationCustom02">Discount</label>
-                                        <input type="email" class="form-control" >
+                                                        </div>
+                                                        <div class="col-md-2 mb-2">
+                                                            <label for="validationCustom02">Discount</label>
+                                                            <input type="email" class="form-control" >
 
-                                    </div>*@
+                                                        </div>*@
                                                     @*<div class="col-md-3 mb-3">
-                                        <label for="validationCustom02">Gross Amount</label>
-                                        <input type="email" class="form-control" disabled="disabled" id="grosamount">
+                                                            <label for="validationCustom02">Gross Amount</label>
+                                                            <input type="email" class="form-control" disabled="disabled" id="grosamount">
 
-                                    </div>*@
-                                                    <div class="col-md-1 mb-1">
+                                                        </div>*@
+                                                    <div class="col-md-2 mb-2">
 
                                                         <br />
                                                         <input type="submit" value="Add" class="btn btn-primary mt-3" id="additem" />
@@ -336,30 +326,72 @@
     $(document).ready(function () {
         var emptyrow = "<tr><td colspan='5' class = 'text-center'> Add Product</td></tr>";
         var selecttext = "-Select-";
-        $("#Catid").change(function () {
-            $.get("/Issue/GetCategoryList", { CID: $("#Catid").val() }, function (data) {
-                $("#SubCatid").empty();
-                $("#SubCatid").append("<option value= ''>" + selecttext + " </option>")
+        //$("#Catid").change(function () {
+        //    $.get("/Issue/GetCategoryList", { CID: $("#Catid").val() }, function (data) {
+        //        $("#SubCatid").empty();
+        //        $("#SubCatid").append("<option value= ''>" + selecttext + " </option>")
+        //        $.each(data, function (index, row) {
+        //            /*var row = "<tr><td>" + row.SubCatName + "</td></tr>";*/
+        //            $("#SubCatid").append("<option value= '" + row.SCID + "'>" + row.SubCatName + " </option>")
+        //            $('#name').prop('selectedIndex', 0);
+        //        });
+        //    });
+        //})
+        //$("#SubCatid").change(function () {
+        //    var CID = $("#Catid").val();
+        //    var SCID = $("#SubCatid").val();
+        //    var url = "/Issue/GetItemList?CID=" + CID + "&SCID=" + SCID;
+        //    $.get(url, function (data) {
+        //        $("#itemname").empty();
+        //        $("#itemname").append("<option value= ''>" + selecttext + " </option>")
+        //        $.each(data, function (index, row) {
+        //            $("#itemname").append("<option value= '" + row.ID + "'>" + row.ID + "|" + row.ItemCode + "|" + row.ItemName + " </option>")
+        //        })
+        //    })
+        //})
+        $("#itemname").change(function () {
+            var itid = $(this).val();
+            //debugger
+            $.get("/Ledger/GetSizeList", { Itemid: $("#itemname").val() }, function (data) {
+                $("#size").empty();
+                $("#size").append("<option value= ''>" + selecttext + " </option>")
                 $.each(data, function (index, row) {
                     /*var row = "<tr><td>" + row.SubCatName + "</td></tr>";*/
-                    $("#SubCatid").append("<option value= '" + row.SCID + "'>" + row.SubCatName + " </option>")
+                    $("#size").append("<option value= '" + row + "'>" + row + " </option>")
                     $('#name').prop('selectedIndex', 0);
                 });
             });
-        })
-        $("#SubCatid").change(function () {
-            var CID = $("#Catid").val();
-            var SCID = $("#SubCatid").val();
-            var url = "/Purchase/GetItemList?CID=" + CID + "&SCID=" + SCID;
-            $.get(url, function (data) {
-                $("#itemname").empty();
-                $("#itemname").append("<option value= ''>" + selecttext + " </option>")
+            $.get("/Ledger/GetColorList", { Itemid: $("#itemname").val() }, function (data) {
+                $("#colorid").empty();
+                $("#colorid").append("<option value= ''>" + selecttext + " </option>")
                 $.each(data, function (index, row) {
-                    $("#itemname").append("<option value= '" + row.ID + "'>" + row.ID + "|" + row.ItemCode + "|" + row.ItemName + " </option>")
-                })
+                    /*var row = "<tr><td>" + row.SubCatName + "</td></tr>";*/
+                    $("#colorid").append("<option value= '" + row + "'>" + row + " </option>")
+                    $('#name').prop('selectedIndex', 0);
+                });
+            });
+
+        })
+        $("#colorid").change(function () {
+            var Itemid = $("#itemname").val();
+            var size = $("#size").val();
+            var color = $("#colorid").val();
+            var url = "/Issue/GetAbleQty?item=" + Itemid + "&size=" + size + "&color=" + color;
+            $.get(url, function (data) {
+                $("#ablqty").append(data);
+                $("#ablqty").val(data);
+
+
             })
         })
-
+        $("#qty").change(function () {
+            var ablqty = parseInt($("#ablqty").val());
+            var qty = parseInt($("#qty").val());
+            if (qty > ablqty) {
+                alert("Error: Insert a valid Quantity.");
+                $("#qty").val("");
+            }
+        });
     });
     $('#qty, #rate').keyup(function () {
         var rate = parseFloat($('#qty').val()) || 0;
@@ -388,7 +420,8 @@
         var AMOUNT = $("#amount").val();
         var detailsTableBody = $("#basic-dt tbody");
 
-        var productItem = '<tr><td>' + ITEMID+ '</td><td>' + SIZE + '</td><td>' + COLOR + '</td><td>' + QTY + '</td><td>' + RATE + '</td><td>' + AMOUNT + '</td><td><a data-itemId="0" href="#" class="btn btn-danger deleteItem">Remove</a></td></tr>';
+
+        var productItem = '<tr><td>' + ITEMID + '</td><td>' + SIZE + '</td><td>' + COLOR + '</td><td>' + QTY + '</td><td>' + RATE + '</td><td>' + AMOUNT + '</td><td><a data-itemId="0" href="#" class="btn btn-danger deleteItem">Remove</a></td></tr>';
         detailsTableBody.append(productItem);
         clearItem();
 
@@ -445,7 +478,11 @@
     }
     $("#saveOrder").click(function (e) {
         e.preventDefault();
-
+        //For required field
+        //if (!input1) {
+        //    alert("Error: Input 1 is a required field.");
+        //    return false;
+        //}
         var orderArr = [];
         orderArr.length = 0;
 
@@ -463,11 +500,11 @@
 
 
         var data = JSON.stringify({
-            TRANSDT : $("#datepick").val(),
-            TRANSYY : $("#year").val(),
-            TRANSNO : $("#memoid").val(),
-            STOREFR : $("#storeid option:selected").val(),
-            STORETO : $("#suppid option:selected").val(),
+            TRANSDT: $("#datepick").val(),
+            TRANSYY: $("#year").val(),
+            TRANSNO: $("#memoid").val(),
+            STOREFR: $("#storeid option:selected").val(),
+            STORETO: $("#suppid option:selected").val(),
             TotalAmount: $("#totalamount").val(),
             order: orderArr
         });

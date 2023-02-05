@@ -69,8 +69,8 @@
                         </div>
                     </div>
                     <div class="quick-category-content">
-                        <h3>2189</h3>
-                        <p class="font-17 text-primary mb-0">Products Sold</p>
+                        <h3>@ViewBag.ItemCount</h3>
+                        <p class="font-17 text-primary mb-0">Products Iisted</p>
                     </div>
                 </a>
             </div>
@@ -82,14 +82,14 @@
                         </span>
                         <div class="ml-auto">
                             <div class="quick-comparison qcompare-danger">
-                                <span>10%</span>
+                                <span>5%</span>
                                 <i class="las la-arrow-down"></i>
                             </div>
                         </div>
                     </div>
                     <div class="quick-category-content">
-                        <h3>450</h3>
-                        <p class="font-17 text-warning mb-0">New Orders</p>
+                        <h3>@ViewBag.IssueItem</h3>
+                        <p class="font-17 text-warning mb-0">Issue Product</p>
                     </div>
                 </a>
             </div>
@@ -116,18 +116,18 @@
                 <a class="widget quick-category">
                     <div class="quick-category-head">
                         <span class="quick-category-icon qc-success-teal rounded-circle">
-                            <i class="las la-user-plus"></i>
+                            <i class="las la-exclamation-triangle"></i>
                         </span>
                         <div class="ml-auto">
                             <div class="quick-comparison qcompare-danger">
-                                <span>50%</span>
+                                <span>@ViewBag.totaliteminred</span>
                                 <i class="las la-arrow-down"></i>
                             </div>
                         </div>
                     </div>
                     <div class="quick-category-content">
-                        <h3>35</h3>
-                        <p class="font-17 text-success-teal mb-0">New Customers</p>
+                        <h3>@ViewBag.totaliteminred</h3>
+                        <p class="font-17 text-success-teal mb-0">Running out Stock</p>
                     </div>
                 </a>
             </div>

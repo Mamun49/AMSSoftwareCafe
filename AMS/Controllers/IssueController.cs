@@ -25,15 +25,18 @@ namespace AMS.Controllers
             var storeList = GetStoreList();
             foreach (var item in storeList)
             {
-                StoreList.Add(new SelectListItem { Text = item.StoreID.ToString() + " | " + item.StoreName, Value = item.StoreID.ToString() });
+                   
+                    StoreList.Add(new SelectListItem { Text = item.StoreID.ToString() + " | " + item.StoreName, Value = item.StoreID.ToString() });
             }
             ViewBag.StoreList = StoreList;
 
             var ItemList = new List<SelectListItem>();
-            var itemList = GetItemList();
-            foreach (var item in itemList)
+                //var itemList = GetItemList();
+                var itemList = (from n in db.STK_Trans where n.TRANSTP == "Purchase" select n).ToList();
+                ItemList.Add(new SelectListItem { Text = "--Select Item Name--", Value = "" });
+                foreach (var item in itemList)
             {
-                ItemList.Add(new SelectListItem { Text = +item.ID + " | " + item.ItemCode.ToString() + " | " + item.ItemName, Value = item.ID.ToString() });
+                ItemList.Add(new SelectListItem { Text = +item.ITEMID +  " | " + item.ITEMSL, Value = item.ITEMID.ToString() });
             }
             ViewBag.ItemList = ItemList;
 
@@ -65,12 +68,13 @@ namespace AMS.Controllers
 
             return StoreList;
         }
-        private List<STK_Item> GetItemList()
-        {
-            List<STK_Item> ItemList = db.STK_Items.ToList();
+        //private List<STK_Item> GetItemList()
+        //{
+        //    //List<STK_Item> ItemList = db.STK_Items.ToList();
+        //    List<STK_Trans> ItemList = (from n in db.STK_Trans where n.TRANSTP == "Purchase" select n).ToList();
 
-            return ItemList;
-        }
+        //    return ItemList;
+        //}
         private List<PS_tbl> GetSuppList()
         {
             List<PS_tbl> SuppList = db.PS_Tbls.ToList();
@@ -87,6 +91,14 @@ namespace AMS.Controllers
             List<SubCategory> Subcat = db.SubCategories.Where(x => x.CID == CID).ToList();
             return Json(Subcat, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult GetAbleQty(int item, string size, string color)
+        {
+           
+            //List<STK_Stock> ItemSelect = db.STK_Stocks.Where(x => x.ItemID == item && x.Size == size && x.Color ==color).ToList();
+            var ItemSelect = (from n in db.STK_Stocks where n.ItemID == item && n.Size == size && n.Color == color select n.StockQty).FirstOrDefault();
+            return Json(ItemSelect, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult SaveProduct(string TRANSDT, string TRANSNO, string STOREFR, string STORETO, string TRANSYY, int TotalAmount, STK_Trans[] order)
         {
             if (Session["UserMail"] != null)
